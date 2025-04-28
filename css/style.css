@@ -1,0 +1,53 @@
+/* 전체 공통 스타일 */
+body {
+  font-family: 'Noto Sans', sans-serif;
+  margin: 0;
+  background: #f9f9f9;
+}
+
+.header, .footer {
+  background-color: #22b8cf;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  background: #fff;
+  min-height: calc(100vh - 160px); /* 헤더+푸터 높이 뺀 영역 */
+}
+
+.intro {
+  text-align: center;
+}
+
+.intro h2 {
+  margin-bottom: 1rem;
+}
+
+button {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+  border: none;
+  border-radius: 8px;
+  background-color: #22b8cf;
+  color: white;
+  cursor: pointer;
+}
+
+button.secondary {
+  background-color: #adb5bd;
+}
+
+/* 반응형 대응 */
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}

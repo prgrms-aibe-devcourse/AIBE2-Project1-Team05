@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>여행 일정 작성</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>여행 일정 계획</h1>
+    <div>
+      <label for="start-date">출발일</label>
+      <input type="text" id="start-date" />
+    </div>
+    <div>
+      <label for="end-date">도착일</label>
+      <input type="text" id="end-date" />
+    </div>
+    <div>
+      <label for="notes">일정 메모</label>
+      <textarea id="notes" rows="5"></textarea>
+    </div>
+    <button id="save-plan">저장</button>
+    <div id="saved-plan" style="margin-top: 1rem;"></div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="js/calendar.js"></script>
+</body>
+</html>

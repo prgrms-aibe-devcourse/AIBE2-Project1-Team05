@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>후기 작성</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <h1>후기 작성</h1>
+  </header>
+
+  <main class="container">
+    <section class="review-form">
+      <form id="reviewForm">
+        <label>방문한 장소명</label>
+        <input type="text" id="place-name" placeholder="장소 이름" required style="width:100%; padding:1rem; margin:0.5rem 0;"/>
+
+        <label>별점</label>
+        <select id="rating" style="width:100%; padding:1rem; margin:0.5rem 0;">
+          <option value="5">⭐️⭐️⭐️⭐️⭐️ (5점)</option>
+          <option value="4">⭐️⭐️⭐️⭐️ (4점)</option>
+          <option value="3">⭐️⭐️⭐️ (3점)</option>
+          <option value="2">⭐️⭐️ (2점)</option>
+          <option value="1">⭐️ (1점)</option>
+        </select>
+
+        <label>후기 내용</label>
+        <textarea id="review-text" placeholder="후기를 작성해주세요" rows="5" style="width:100%; padding:1rem; margin:0.5rem 0;"></textarea>
+
+        <button type="submit">후기 저장</button>
+      </form>
+
+      <p style="text-align:center; margin-top:1rem;">
+        <a href="mypage.html">마이페이지로 돌아가기</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>© 2025 Trip Planner</small>
+  </footer>
+
+  <script src="js/review.js"></script>
+</body>
+</html>
