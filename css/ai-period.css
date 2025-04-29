@@ -31,6 +31,7 @@
   margin: 2rem 0 0.5rem 0;
   color: #A3DBFE;
   padding: 0 1rem; /* ✨ 좌우 패딩 추가 */
+  
 }
 
 .period-list {
@@ -56,6 +57,7 @@
   cursor: pointer;
   box-sizing: border-box;
   transition: all 0.3s ease;
+  font-weight: bold;
 }
 
 .period-button.selected {
@@ -79,6 +81,7 @@
   text-align: center;
   cursor: pointer;
   box-sizing: border-box;
+  font-weight: bold;
 }
 
 .direct-period.selected {
