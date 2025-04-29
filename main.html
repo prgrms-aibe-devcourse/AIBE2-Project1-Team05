@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Planite Main Page</title>
+    <link rel="stylesheet" href="css/bottom-nav.css">
     <style>
       body {
         margin: 0;
@@ -195,13 +196,7 @@
       </div>
     </div>
 
-    <div class="bottom-nav">
-      <button onclick="location.href='main.html'">🏠</button>
-      <button>🔍</button>
-      <button>➕</button>
-      <button>🔔</button>
-      <button onclick="location.href='mypage.html'">👤</button>
-    </div>
+    <div id="bottom-nav-container"></div>
 
     <script>
       const username = "인봉";
@@ -242,6 +237,11 @@
       slider.addEventListener("mouseenter", () => {
         slider.style.cursor = "grab";
       });
+    </script>
+
+    <script src="js/bottom-nav.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', loadBottomNav);
     </script>
   </body>
 </html>
