@@ -6,10 +6,7 @@
     <title>프로필 페이지</title>
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/mypage.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
   </head>
 
   <body>
@@ -25,22 +22,14 @@
 
       <!-- 아이콘 탭 (그리드/일정 전환) -->
       <div class="profile-tabs">
-        <i class="fas fa-th"></i> 
-        <i class="fas fa-calendar"></i>          
+        <i class="fas fa-th active"></i> 
+        <i class="fas fa-calendar-alt"></i>          
       </div>
 
       <!-- 갤러리 탭 -->
       <div class="gallery-tab">
         <div class="photo-grid">
-          <img src="./assets/images/vietnam.jpg" class="gallery-photo" data-diary-id="1" alt="사진" />
-          <img src="./assets/images/vietnam.jpg" class="gallery-photo" data-diary-id="" alt="사진" />
-          <img src="./assets/images/vietnam.jpg" class="gallery-photo" data-diary-id="" alt="사진" />
-          <img src="./assets/images/vietnam.jpg" class="gallery-photo" data-diary-id="" alt="사진" />
-          <img src="./assets/images/vietnam.jpg" class="gallery-photo" data-diary-id="" alt="사진" />
-          <img src="./assets/images/vietnam.jpg" class="gallery-photo" data-diary-id="" alt="사진" />
-          <img src="./assets/images/vietnam.jpg" class="gallery-photo" data-diary-id="" alt="사진" />
-          <img src="./assets/images/vietnam.jpg" class="gallery-photo" data-diary-id="" alt="사진" />
-          <img src="./assets/images/vietnam.jpg" class="gallery-photo" data-diary-id="" alt="사진" />
+          <!-- 여기에 JS로 gallery-photo 자동 삽입됨 -->
         </div>
       </div>
 
@@ -51,21 +40,7 @@
 
           <!-- 사진 슬라이더 -->
           <div class="photo-slider">
-            <img
-              src="./assets/images/seoul.jpg"
-              class="slide-photo active"
-              alt="슬라이드1"
-            />
-            <img
-              src="./assets/images/vietnam.jpg"
-              class="slide-photo"
-              alt="슬라이드2"
-            />
-            <img
-              src="./assets/images/seoul.jpg"
-              class="slide-photo"
-              alt="슬라이드3"
-            />
+            <!-- JS로 이미지 삽입됨 -->
             <div class="slide-controls">
               <button class="prev-btn">&lt;</button>
               <button class="next-btn">&gt;</button>
@@ -74,46 +49,33 @@
 
           <!-- 여행 정보 -->
           <div class="diary-info">
-            <h3>도쿄 벚꽃</h3>
-            <p>2025.04.26 ~ 2025.05.07</p>
-            <p class="route">
-              김포공항 → 도쿄공항 → 숙소 → 디즈니랜드 → 유니버설
-            </p>
+            <h3 class="diary-title">제목 자리</h3>
+            <p class="diary-period">기간 자리</p>
+            <p class="route">경로 자리</p>
           </div>
 
           <!-- 여행 일기 작성 -->
           <div class="diary-textarea-wrapper">
             <textarea id="diaryText" readonly placeholder="여행 일기를 작성해보세요..."></textarea>
-          
             <div class="diary-actions">
               <button id="editBtn">수정</button>
               <button id="cancelBtn" style="display: none;">취소</button>
               <button id="saveBtn" style="display: none;">저장</button>
             </div>
           </div>
-        
         </div>
       </div>
 
       <!-- 일정 탭 -->
-      <div class="calendar-tab" style="display: none">
-        <div class="plan-card" id="openModal" style="position: relative">
-          <img src="./assets/images/vietnam.jpg" alt="아이콘" />
-          <div>
-            <strong>도쿄 벚꽃</strong>
-            <p>2025.04.26 ~ 2025.05.07</p>
-          </div>
-          <i class="fas fa-ellipsis-h more-btn"></i>
-
-          <div class="more-menu" style="display: none">
-            <button class="edit-btn">수정</button>
-            <button class="delete-btn">삭제</button>
-          </div>
+      <div class="calendar-tab" style="display: none;">
+        <div class="calendar-grid">
+          <!-- JS로 일정 카드(plan-card) 자동 삽입됨 -->
         </div>
       </div>
     </div>
-    <script src="js/layout.js"></script>
-    <script defer src="js/mypage.js"></script>
+
+    <script src="./js/layout.js"></script>
+    <script defer src="./js/mypage.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", applyCommonLayout);
     </script>
