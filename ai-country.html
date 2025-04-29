@@ -5,46 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>여행 도시 선택</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/ai-country.css" />
+  <link rel="stylesheet" href="css/ai-country.css">
 </head>
 <body>
+  <div class="wrapper">
 
-  <!-- 상단바 -->
-  <!-- <div class="top-bar">
-    <button class="back-button" onclick="history.back()">←</button>
-  </div> -->
+     <!-- 상단바  -->
+    <div class="top-bar">
+        <button class="back-button" onclick="location.href='ai-intro.html'">←</button>
+    </div> 
 
-  <!-- 지구 아이콘 -->
-  <img src="assets/images/earai.png" alt="지구 아이콘" class="earth-icon">
+    <!-- 지구 아이콘 -->
+    <img src="assets/images/earai.png" alt="지구 아이콘" class="earth-icon">
 
-  <!-- 메인 질문 텍스트 -->
-  <div class="title-text">오늘은 어디로 떠나볼까요?</div>
-  <div class="sub-text">도시를 선정해주세요!</div>
+    <!-- 메인 질문 텍스트 -->
+    <div class="title-text">오늘은 어디로 떠나볼까요?</div>
+    <div class="sub-text">도시를 선정해주세요!</div>
 
-  <!-- 한국 섹션 -->
-  <div class="section-title">한국</div>
-  <div class="city-list">
-    <button class="city-button" onclick="toggleCity(this)">서울</button>
-    <button class="city-button" onclick="toggleCity(this)">부산</button>
-    <button class="city-button" onclick="toggleCity(this)">제주</button>
-    <button class="city-button" onclick="toggleCity(this)">머구</button>
-  </div>
+    <!-- 한국 섹션 -->
+    <div class="section-title">한국</div>
+    <div class="city-list">
+      <button class="city-button" onclick="toggleCity(this)">서울</button>
+      <button class="city-button" onclick="toggleCity(this)">부산</button>
+      <button class="city-button" onclick="toggleCity(this)">제주</button>
+      <button class="city-button" onclick="toggleCity(this)">머구</button>
+    </div>
 
-  <!-- 일본 섹션 -->
-  <div class="section-title">일본</div>
-  <div class="city-list">
-    <button class="city-button" onclick="toggleCity(this)">도쿄</button>
-    <button class="city-button" onclick="toggleCity(this)">오사카</button>
-    <button class="city-button" onclick="toggleCity(this)">삿포로</button>
-    <button class="city-button" onclick="toggleCity(this)">후쿠오카</button>
-    <button class="city-button" onclick="toggleCity(this)">나고야</button>
-    <button class="city-button" onclick="toggleCity(this)">오키나와</button>
-  </div>
+    <!-- 일본 섹션 -->
+    <div class="section-title">일본</div>
+    <div class="city-list">
+      <button class="city-button" onclick="toggleCity(this)">도쿄</button>
+      <button class="city-button" onclick="toggleCity(this)">오사카</button>
+      <button class="city-button" onclick="toggleCity(this)">삿포로</button>
+      <button class="city-button" onclick="toggleCity(this)">후쿠오카</button>
+      <button class="city-button" onclick="toggleCity(this)">나고야</button>
+      <button class="city-button" onclick="toggleCity(this)">오키나와</button>
+    </div>
 
-  <!-- 선택 완료 버튼 -->
-  <button class="finish-button" onclick="finishSelection()">선택 완료</button>
+    <!-- 선택 완료 버튼 -->
+    <button class="finish-button" onclick="finishSelection()">선택 완료</button>
 
+  </div> 
+
+  <script src="js/layout.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', applyCommonLayout);
+  </script>
   <script src="js/ai-country.js"></script>
-
 </body>
 </html>

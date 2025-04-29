@@ -1,110 +1,125 @@
 /* ai-period.css: 여행 기간 선택 페이지 전용 스타일 */
 
+.calendar-icon {
+  padding-top: 30px;
+  width: 60px;
+  height: auto;
+  margin: 0 auto 1.5rem auto; /* 중앙 정렬 */
+  display: block;
+}
 
-  
-  .back-button {
-    background: none;
-    border: none;
-    color: #FFFFFF;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-  
-  .calendar-icon {
-    width: 60px;
-    height: auto;
-    margin-bottom: 1.5rem;
-  }
-  
-  .title-text {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    text-align: center;
-  }
-  
-  .sub-text {
-    font-size: 1rem;
-    color: #E3E6F3;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-  
-  .section-title {
-    width: 100%;
-    max-width: 400px;
-    text-align: left;
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin: 2rem 0 0.5rem 0;
-    color: #A3DBFE;
-  }
-  
-  .period-list {
-    width: 100%;
-    max-width: 400px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  
-  .period-button {
-    flex: 1 1 45%;
-    background-color: #E3E6F3;
-    color: #202B3B;
-    border: 2px solid transparent;
-    border-radius: 20px;
-    padding: 0.8rem;
-    font-size: 1rem;
-    text-align: center;
-    cursor: pointer;
-    box-sizing: border-box;
-    transition: all 0.3s ease;
-  }
-  
-  .period-button.selected {
-    border: 2px solid #5E9DEE;
-    color: #5E9DEE;
-    background-color: #FFFFFF;
-    font-weight: bold;
-  }
-  
-  .direct-period {
-    width: 100%;
-    max-width: 400px;
-    background-color: #E3E6F3;
-    color: #202B3B;
-    border: none;
-    border-radius: 20px;
-    padding: 1rem;
-    font-size: 1rem;
-    text-align: center;
-    margin-top: 1rem;
-    cursor: pointer;
-  }
-  
-  .direct-period.selected {
-    border: 2px solid #5E9DEE;
-    color: #5E9DEE;
-    background-color: #FFFFFF;
-    font-weight: bold;
-  }
-  
-  .finish-button {
-    margin-top: 2rem;
-    background-color: #A3DBFE;
-    color: #202B3B;
-    border: none;
-    border-radius: 30px;
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    width: 100%;
-    max-width: 300px;
-    cursor: pointer;
-  }
-  
-  .finish-button:hover {
-    background-color: #8ac6f0;
-  }
-  
+.title-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.sub-text {
+  font-size: 1rem;
+  color: #E3E6F3;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.section-title {
+  width: 100%;
+  max-width: 400px;
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 2rem 0 0.5rem 0;
+  color: #A3DBFE;
+  padding: 0 1rem; /* ✨ 좌우 패딩 추가 */
+}
+
+.period-list {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem; /* ✨ 버튼 사이 여백 넓힘 */
+  margin: 0 auto;
+  padding: 0 1.5rem; /* ✨ 좌우 패딩 추가 */
+}
+
+.period-button {
+  flex: 1 1 42%; /* ✨ 버튼 폭 살짝 줄임 */
+  max-width: 42%;
+  background-color: #E3E6F3;
+  color: #202B3B;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  padding: 1rem;
+  font-size: 1rem;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.period-button.selected {
+  border: 2px solid #5E9DEE;
+  color: #5E9DEE;
+  background-color: #FFFFFF;
+  font-weight: bold;
+}
+
+.direct-period {
+  display: block;              
+  margin: 1rem auto 0 auto;    
+  width: 100%;
+  max-width: 320px;            
+  background-color: #E3E6F3;
+  color: #202B3B;
+  border: none;
+  border-radius: 20px;
+  padding: 1rem 1.2rem;
+  font-size: 1rem;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.direct-period.selected {
+  border: 2px solid #5E9DEE;
+  color: #5E9DEE;
+  background-color: #FFFFFF;
+  font-weight: bold;
+}
+
+.finish-button {
+  margin-top: 2.5rem;
+  background-color: #A3DBFE;
+  color: #202B3B;
+  border: none;
+  border-radius: 30px;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 100%;
+  max-width: 300px;
+  cursor: pointer;
+  display: block;
+  margin: 2.5rem auto 0 auto; /* 중앙 정렬 */
+}
+
+.finish-button:hover {
+  background-color: #8ac6f0;
+}
+
+.top-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  font-size: 1.8rem; /* ← 살짝 크게 해서 터치 잘 되게 */
+  cursor: pointer;
+}
