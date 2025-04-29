@@ -1,7 +1,7 @@
 /* ai-intro.css: AI 추천 인트로 페이지 전용 스타일 */
 
 .tracking-icon {
-  padding-top: 90px;
+  padding-top: 30px;
   width: 80px;
   height: 80px;
   margin: 0 auto 1.2rem auto; /* 중앙정렬 */
@@ -46,4 +46,20 @@
 
 .start-button:hover {
   background-color: #d5d9e6;
+}
+
+.top-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  font-size: 1.8rem; /* ← 살짝 크게 해서 터치 잘 되게 */
+  cursor: pointer;
 }
