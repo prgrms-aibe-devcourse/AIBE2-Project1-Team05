@@ -215,6 +215,26 @@
     object-fit: cover;
     cursor: pointer;
   }
+  .add-diary-tile {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-color: #e3e6f3;
+    border: 2px dashed #5e9dee;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: #5e9dee;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box; /* ✅ 추가 */
+  }
+  
+  
+  .add-diary-tile:hover {
+    background-color: #d8e7ff;
+  }
   
   /* 다이어리 모달 */
   .diary-modal {
