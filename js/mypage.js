@@ -1,6 +1,6 @@
 // mypage.js 전체
 
-// 예시 다이어리 데이터 (id, 제목, 날짜, 이미지 등)
+// 예시 다이어리 데이터
 const diaryList = [
   {
     id: "101",
@@ -11,8 +11,8 @@ const diaryList = [
     photos: [
       "./assets/images/seoul.jpg",
       "./assets/images/vietnam.jpg",
-      "./assets/images/seoul.jpg",
-    ],
+      "./assets/images/seoul.jpg"
+    ]
   },
   {
     id: "102",
@@ -23,12 +23,11 @@ const diaryList = [
     photos: [
       "./assets/images/vietnam.jpg",
       "./assets/images/seoul.jpg",
-      "./assets/images/vietnam.jpg",
-    ],
-  },
+      "./assets/images/vietnam.jpg"
+    ]
+  }
 ];
 
-// 탭 전환 (갤러리/일정)
 document.addEventListener("DOMContentLoaded", () => {
   const gridIcon = document.querySelector(".fa-th");
   const calendarIcon = document.querySelector(".fa-calendar-alt");
@@ -49,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
     calendarIcon.classList.add("active");
   });
 
-  // 갤러리 동적 생성
   const galleryContainer = document.querySelector(".photo-grid");
   diaryList.forEach((diary) => {
     const img = document.createElement("img");
@@ -60,13 +58,22 @@ document.addEventListener("DOMContentLoaded", () => {
     galleryContainer.appendChild(img);
   });
 
-  // 갤러리 → 모달 열기
+  // ➕ 다이어리 추가 버튼
+  const addButton = document.createElement("div");
+  addButton.className = "add-diary-tile";
+  addButton.innerHTML = "<span>+</span>";
+  addButton.addEventListener("click", () => {
+    alert("새 다이어리 작성 화면으로 이동 (또는 모달 표시)");
+    // window.location.href = 'new-diary.html';
+  });
+  galleryContainer.appendChild(addButton);
+
   const diaryModal = document.getElementById("diaryModal");
   const closeDiary = document.querySelector(".close-diary");
   galleryContainer.addEventListener("click", (e) => {
     if (e.target.classList.contains("gallery-photo")) {
       const diaryId = e.target.dataset.diaryId;
-      const selected = diaryList.find((d) => d.id === diaryId);
+      const selected = diaryList.find(d => d.id === diaryId);
       if (selected) openDiaryModal(selected);
     }
   });
@@ -104,9 +111,8 @@ document.addEventListener("DOMContentLoaded", () => {
     diaryModal.classList.add("show");
   }
 
-  // 일정 카드 동적 생성
   const calendarGrid = document.querySelector(".calendar-grid");
-  diaryList.forEach((plan) => {
+  diaryList.forEach(plan => {
     const card = document.createElement("div");
     card.className = "plan-card";
     card.dataset.planId = plan.id;
@@ -127,7 +133,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     calendarGrid.appendChild(card);
   });
-  // 다이어리 편집/저장/취소
+
+  // ✏️ 수정/저장/취소 기능
   const diaryText = document.getElementById("diaryText");
   const editBtn = document.getElementById("editBtn");
   const cancelBtn = document.getElementById("cancelBtn");
@@ -166,4 +173,10 @@ document.addEventListener("DOMContentLoaded", () => {
     cancelBtn.style.display = "none";
     saveBtn.style.display = "none";
   });
+  const profileHeader = document.querySelector('.profile-header');
+  if (profileHeader) {
+    setTimeout(() => {
+      profileHeader.classList.add('show');
+    }, 100); // 약간의 딜레이를 줘서 더 부드럽게
+  }
 });
