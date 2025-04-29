@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>여행 기간 선택</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="css/ai-period.css" />
+</head>
+<body>
+
+  <!-- 상단바
+  <div class="top-bar">
+    <button class="back-button" onclick="history.back()">←</button>
+  </div> -->
+
+  <!-- 캘린더 아이콘 -->
+  <img src="assets/images/calendar.png" alt="캘린더 아이콘" class="calendar-icon">
+
+  <!-- 질문 텍스트 -->
+  <div class="title-text">여행 기간을 선택해주세요!</div>
+  <div class="sub-text">얼마나 오래 떠나시나요?</div>
+
+  <!-- 빠른 기간 선택 -->
+  <div class="section-title">기간 빠른 선택</div>
+  <div class="period-list">
+    <button class="period-button" onclick="selectQuickPeriod(0)">당일치기</button>
+    <button class="period-button" onclick="selectQuickPeriod(1)">1박 2일</button>
+    <button class="period-button" onclick="selectQuickPeriod(2)">2박 3일</button>
+    <button class="period-button" onclick="selectQuickPeriod(3)">3박 4일</button>
+  </div>
+
+  <!-- 직접 기간 선택 -->
+  <div class="section-title">기간 직접 선택</div>
+  <button id="directPeriod" class="direct-period" onclick="openCalendar()">날짜를 직접 선택하세요</button>
+
+  <!-- 선택 완료 버튼 -->
+  <button class="finish-button" onclick="finishPeriod()">선택 완료</button>
+
+  <script src="js/ai-period.js"></script>
+
+</body>
+</html>

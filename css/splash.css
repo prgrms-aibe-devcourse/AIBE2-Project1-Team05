@@ -1,0 +1,49 @@
+/* splash.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #1e2734;
+  color: #ffffff;
+  font-family: "Pretendard", sans-serif;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.splash-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeOutUp 1s ease-in-out 1s forwards;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #5e9dee;
+  margin: 0;
+}
+
+.subtitle {
+  margin-top: 16px;
+  font-size: 16px;
+  color: #e3e6f3;
+}
+
+/* 애니메이션 */
+@keyframes fadeOutUp {
+  to {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+}

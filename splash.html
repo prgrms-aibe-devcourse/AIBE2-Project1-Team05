@@ -3,67 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Planite Splash Screen</title>
-    <style>
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #1e2734;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: "Pretendard", sans-serif;
-        overflow: hidden;
-      }
-      .splash-container {
-        width: 390px;
-        height: 844px;
-        background-color: #1e2734;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        opacity: 1;
-        transform: translateY(0);
-        transition: all 0.8s ease;
-      }
-      img {
-        width: 240px;
-        height: auto;
-        margin-bottom: 20px;
-      }
-      h1 {
-        font-size: 28px;
-        color: #5e9dee;
-        margin: 0 0 10px 0;
-      }
-      p {
-        font-size: 16px;
-        margin: 0;
-        color: #e3e6f3;
-      }
-    </style>
+    <title>Planite Splash</title>
+    <link rel="stylesheet" href="css/splash.css" />
   </head>
   <body>
-    <div class="splash-container" id="splash">
-      <img src="assets/images/planite.png" alt="Planite Logo" />
-      <h1>PLANITE</h1>
-      <p>PLANITE이 당신의 여행 궤도를 설계합니다</p>
+    <div id="splash" class="splash-container">
+      <img
+        src="assets/images/planite_splash.png"
+        alt="Planite Logo"
+        class="logo"
+      />
+      <p class="subtitle">PLANITE이 당신의 여행 궤도를 설계합니다</p>
     </div>
 
-    <script>
-      setTimeout(function () {
-        const splash = document.getElementById("splash");
-        splash.style.opacity = "0";
-        splash.style.transform = "translateY(-100px)";
-        setTimeout(function () {
-          window.location.href = "main.html";
-        }, 800);
-      }, 1000);
-    </script>
+    <script src="js/splash.js"></script>
   </body>
 </html>

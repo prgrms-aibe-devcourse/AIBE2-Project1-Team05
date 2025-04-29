@@ -1,0 +1,136 @@
+.container {
+  padding: 20px;
+}
+.welcome {
+  text-align: center;
+  margin-top: 90px;
+  /* margin-bottom: 10px;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeInDown 0.8s forwards; */
+}
+@keyframes fadeInDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.welcome h2 {
+  margin: 0;
+  font-size: 22px;
+  color: #e3e6f3;
+}
+.welcome p {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: #a0a4b8;
+}
+.highlight {
+  color: #5e9dee;
+}
+.ai-button {
+  margin-top: 20px;
+  padding: 15px;
+  width: 100%;
+  background-color: #e3e6f3;
+  color: #1e2734;
+  font-weight: bold;
+  border: none;
+  border-radius: 24px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.ai-button:hover {
+  background-color: #d0d4e4;
+}
+.section-title {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  text-align: left;
+  opacity: 0;
+  animation: fadeIn 1s 0.5s forwards;
+}
+.card-list-wrapper {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  width: 100%;
+  user-select: none;
+  margin-top: 20px;
+}
+.card-list-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.card-list {
+  display: flex;
+  gap: 12px;
+  padding-bottom: 20px;
+  padding-top: 10px;
+  width: max-content;
+  user-select: none;
+}
+.card {
+  width: 120px;
+  height: 160px;
+  background-color: #2d3748;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  pointer-events: none;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+}
+.card-text {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  font-size: 12px;
+  background: rgba(30, 39, 52, 0.7);
+  padding: 2px 6px;
+  border-radius: 6px;
+  z-index: 1;
+}
+.bottom-nav {
+  width: 100%;
+  max-width: 390px;
+  background-color: #5e9dee;
+  height: 56px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+.bottom-nav button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
