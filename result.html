@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>여행 일정 결과</title>
+  <link rel="stylesheet" href="css/style.css">
+
+ 
+  <script src="js/config.js"></script>
+  
+  <script>
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${CONFIG.GOOGLE_MAPS_API_KEY}`;
+    document.head.appendChild(script);
+  </script>
+</head>
+<body>
+  <header class="header">
+    <h1>여행 일정 결과</h1>
+  </header>
+
+  <main class="container map-layout">
+    <div id="map" style="height: 60vh;"></div>
+
+    <div id="day-tabs" style="display: flex; justify-content: center; margin-top: 1rem;">
+      <!-- Day 버튼은 JS로 동적으로 생성 -->
+    </div>
+
+    <div id="schedule" class="schedule-list" style="padding:1rem;">
+      <ul id="schedule-list"></ul>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <small>© 2025 Trip Planner</small>
+  </footer>
+
+  <script src="js/result.js"></script>
+</body>
+</html>

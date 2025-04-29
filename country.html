@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>나라 선택</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <h1>여행할 나라를 선택하세요</h1>
+  </header>
+
+  <main class="container">
+    <section class="country-select">
+      <h2>어디로 떠나볼까요?</h2>
+      <div class="button-group">
+        <button onclick="selectCountry('한국')">한국</button>
+        <button onclick="selectCountry('일본')">일본</button>
+        <button onclick="selectCountry('태국')">태국</button>
+        <button onclick="selectCountry('프랑스')">프랑스</button>
+        <button onclick="selectCountry('미국')">미국</button>
+      </div>
+
+      <button onclick="selectRandom()" class="secondary">랜덤 선택</button>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>© 2025 Trip Planner</small>
+  </footer>
+
+  <script src="js/country.js"></script>
+</body>
+</html>

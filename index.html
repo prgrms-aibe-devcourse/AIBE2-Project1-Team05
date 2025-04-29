@@ -1,13 +1,27 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>여행 일정 추천 플랫폼</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Trip Planner</h1>
+  </header>
+
+  <main class="container">
+    <section class="intro">
+      <h2>당신만의 여행을 시작해보세요</h2>
+      <p>간단한 키워드를 선택하면 AI가 여행 일정을 추천해줍니다.</p>
+      <button onclick="location.href='country.html'">여행 일정 만들기 시작하기</button>
+      <button onclick="location.href='manual-plan.html'" class="secondary">직접 여행 플랜 만들기</button>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>© 2025 Trip Planner</small>
+  </footer>
+</body>
 </html>

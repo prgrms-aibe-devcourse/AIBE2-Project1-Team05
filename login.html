@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <h1>로그인</h1>
+  </header>
+
+  <main class="container">
+    <section class="login-form">
+      <form id="loginForm">
+        <input type="email" id="email" placeholder="이메일" required style="width:100%; padding:1rem; margin:0.5rem 0;"/>
+        <input type="password" id="password" placeholder="비밀번호" required style="width:100%; padding:1rem; margin:0.5rem 0;"/>
+        <button type="submit">로그인</button>
+      </form>
+
+      <p style="text-align:center; margin-top:1rem;">
+        계정이 없으신가요? <a href="signup.html">회원가입</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>© 2025 Trip Planner</small>
+  </footer>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>
