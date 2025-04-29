@@ -195,14 +195,6 @@
       </div>
     </div>
 
-    <div class="bottom-nav">
-      <button onclick="location.href='main.html'">🏠</button>
-      <button>🔍</button>
-      <button>➕</button>
-      <button>🔔</button>
-      <button onclick="location.href='mypage.html'">👤</button>
-    </div>
-
     <script>
       const username = "인봉";
       document.getElementById("username").innerText = username;
@@ -242,6 +234,11 @@
       slider.addEventListener("mouseenter", () => {
         slider.style.cursor = "grab";
       });
+    </script>
+
+    <script src="js/layout.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', applyCommonLayout);
     </script>
   </body>
 </html>
