@@ -9,6 +9,20 @@ body {
   min-height: 100vh; /* 화면 최소 높이 전체 채움 */
 }
 
+/* body 기존에 쓰고있던 겁니당 */
+/* 
+background-color: #202B3B;
+margin: 0;
+padding: 1rem;
+font-family: 'Noto Sans', sans-serif;
+color: #FFFFFF;
+display: flex;
+flex-direction: column;
+align-items: center;
+min-height: 100vh;
+box-sizing: border-box; 
+*/
+
 /* 기본 wrapper 스타일 */
 .wrapper {
   width: 390px;
