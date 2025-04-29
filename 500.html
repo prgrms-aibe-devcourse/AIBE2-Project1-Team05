@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서버 오류</title>
+    <link rel="stylesheet" href="/css/error.css">
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-icon">🌧️</div>
+        <h1>일시적인 오류가 발생했습니다</h1>
+        <p>서버에 문제가 발생했습니다. 잠시 후 다시 시도해 주세요.</p>
+        <button class="button" onclick="location.reload()">다시 시도하기</button>
+    </div>
+
+    <script src="js/layout.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', applyCommonLayout);
+    </script>
+</body>
+</html> 
