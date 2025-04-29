@@ -1,21 +1,20 @@
-// 테마 선택 (단일 선택)
+// 테마 선택 (다중 선택)
 function selectTheme(button) {
-    document.querySelectorAll('.theme-button').forEach(btn => {
-      btn.classList.remove('selected');
-    });
-    button.classList.add('selected');
+  button.classList.toggle('selected');
+}
+
+// 선택 완료 → selectedThemes 저장
+function finishTheme() {
+  const selectedButtons = document.querySelectorAll('.theme-button.selected');
+  
+  if (selectedButtons.length === 0) {
+    alert("여행 테마를 하나 이상 선택해주세요!");
+    return;
   }
-  
-  // 선택 완료 → selectedTheme 저장
-  function finishTheme() {
-    const selected = document.querySelector('.theme-button.selected');
-    if (!selected) {
-      alert("여행 테마를 선택해주세요!");
-      return;
-    }
-  
-    const theme = selected.innerText.trim();
-    localStorage.setItem('selectedTheme', theme);
-    location.href = 'ai-style.html'; // 다음 페이지 이동
-  }
-  
+
+  // 선택한 모든 테마를 배열로 저장
+  const themes = Array.from(selectedButtons).map(btn => btn.innerText.trim());
+
+  localStorage.setItem('selectedThemes', JSON.stringify(themes));
+  location.href = 'ai-style.html'; // 다음 페이지 이동
+}

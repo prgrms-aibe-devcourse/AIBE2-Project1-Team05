@@ -4,28 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI 추천 시작</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/ai-intro.css" />
 </head>
 
 <body>
+  <div class="wrapper">
+    <!-- 상단 트래킹 아이콘 -->
+    <img src="assets/images/tracking.png" alt="Tracking Icon" class="tracking-icon" />
 
-  <!-- 상단 트래킹 아이콘 -->
-  <img src="assets/images/tracking.png" alt="Tracking Icon" class="tracking-icon">
+    <!-- 메인 텍스트 -->
+    <div class="title-text">
+      당신의 여행 스타일에<br>딱 맞는 일정을 추천해요.
+    </div>
 
-  <!-- 메인 텍스트 -->
-  <div class="title-text">
-    당신의 여행 스타일에<br>딱 맞는 일정을 추천해요.
+    <!-- 원형 지도 이미지 -->
+    <img src="assets/images/mapai1.png" alt="추천 경로 지도" class="map-image" />
+
+    <!-- 바로 추천받기 버튼 -->
+    <button class="start-button" onclick="location.href='ai-country.html'">
+      바로 추천받기
+    </button>
   </div>
 
-  <!-- 원형 지도 이미지 -->
-  <img src="assets/images/mapai1.png" alt="추천 경로 지도" class="map-image">
-    <br>
-
-  <!-- 바로 추천받기 버튼 -->
-  <button class="start-button" onclick="location.href='ai-country.html'">
-    바로 추천받기
-  </button>
-
+  <script src="js/layout.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', applyCommonLayout);
+  </script>
 </body>
 </html>

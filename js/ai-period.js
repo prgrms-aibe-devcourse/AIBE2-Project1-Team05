@@ -14,9 +14,11 @@ function selectQuickPeriod(index) {
 // 직접 기간 선택 (flatpickr)
 function openCalendar() {
   document.querySelectorAll('.period-button').forEach(btn => btn.classList.remove('selected'));
+
   const calendar = flatpickr("#directPeriod", {
     mode: "range",
     dateFormat: "Y.m.d",
+    minDate: "today", // ✅ 오늘 이전 날짜는 선택 불가
     onClose: function(selectedDates, dateStr) {
       if (selectedDates.length === 2) {
         document.getElementById('directPeriod').innerText = `${dateStr}`;
@@ -26,6 +28,7 @@ function openCalendar() {
       }
     }
   });
+
   calendar.open();
 }
 
