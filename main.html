@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Planite Main Page</title>
-    <link rel="stylesheet" href="css/bottom-nav.css">
     <style>
       body {
         margin: 0;
@@ -196,8 +195,6 @@
       </div>
     </div>
 
-    <div id="bottom-nav-container"></div>
-
     <script>
       const username = "인봉";
       document.getElementById("username").innerText = username;
@@ -239,9 +236,9 @@
       });
     </script>
 
-    <script src="js/bottom-nav.js"></script>
+    <script src="js/layout.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', loadBottomNav);
+        document.addEventListener('DOMContentLoaded', applyCommonLayout);
     </script>
   </body>
 </html>
