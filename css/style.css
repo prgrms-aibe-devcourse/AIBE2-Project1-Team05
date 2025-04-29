@@ -1,57 +1,55 @@
-/* 전체 공통 스타일 */
+/* [전체 브라우저 화면 고정용 설정] */
+html,
 body {
-  font-family: 'Noto Sans', sans-serif;
   margin: 0;
-  background: #f9f9f9;
-}
-
-.header, .footer {
-  background-color: #22b8cf;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-}
-
-.container {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-  background: #fff;
-  min-height: calc(100vh - 160px); /* 헤더+푸터 높이 뺀 영역 */
-}
-
-.intro {
-  text-align: center;
-}
-
-.intro h2 {
-  margin-bottom: 1rem;
-}
-
-button {
+  padding: 0;
   width: 100%;
-  padding: 1rem;
-  font-size: 1.1rem;
-  margin: 0.5rem 0;
-  border: none;
-  border-radius: 8px;
-  background-color: #22b8cf;
-  color: white;
-  cursor: pointer;
+  min-height: 100vh;
+  background-color: #1e2734;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
-button.secondary {
-  background-color: #adb5bd;
+/* [본문 body 스타일 설정] */
+body {
+  font-family: "Pretendard", sans-serif;
+  color: #e3e6f3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
 }
 
-/* 반응형 대응 */
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 400px;
-    margin: 0 auto;
-  }
+/* [컨텐츠를 감싸는 wrapper] */
+.wrapper {
+  width: 100%;
+  max-width: 390px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background-color: #1e2a38;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  scrollbar-width: thin; /* 파이어폭스 대응 */
+  scrollbar-color: transparent transparent; /* 기본은 완전 투명 */
 }
 
+/* 크롬, 사파리 등 웹킷 기반 브라우저 */
+.wrapper::-webkit-scrollbar {
+  width: 6px; /* 스크롤바 폭 */
+}
 
-/* ai-intro */
+.wrapper::-webkit-scrollbar-track {
+  background: transparent; /* 스크롤바 배경 완전 투명 */
+}
 
+.wrapper::-webkit-scrollbar-thumb {
+  background-color: transparent; /* 기본 투명 */
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+/* 마우스가 wrapper에 올라가 있을 때만 thumb 색 보여주기 */
+.wrapper:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3); /* hover할 때만 살짝 어둡게 */
+}
