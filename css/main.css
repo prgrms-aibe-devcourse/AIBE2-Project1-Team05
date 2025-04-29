@@ -1,13 +1,39 @@
+/* 카드 텍스트 */
+.card-text {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  font-size: 12px;
+  background: rgba(30, 39, 52, 0.7);
+  padding: 2px 6px;
+  border-radius: 6px;
+  z-index: 1;
+}
+
 .container {
   padding: 20px;
 }
+
+.profile {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.profile img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #5e9dee;
+}
 .welcome {
   text-align: center;
-  margin-top: 90px;
-  /* margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
   opacity: 0;
   transform: translateY(-20px);
-  animation: fadeInDown 0.8s forwards; */
+  animation: fadeInDown 0.8s forwards;
 }
 @keyframes fadeInDown {
   to {
@@ -17,6 +43,7 @@
 }
 .welcome h2 {
   margin: 0;
+  margin-top: 20px;
   font-size: 22px;
   color: #e3e6f3;
 }
@@ -40,14 +67,16 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
+  opacity: 0;
+  animation: fadeIn 1s 0.5s forwards;
 }
 .ai-button:hover {
-  background-color: #d0d4e4;
+  background-color: #5e9dee;
 }
 .section-title {
   margin-top: 30px;
   margin-bottom: 10px;
-  font-size: 14px;
+  font-size: 16px;
   text-align: left;
   opacity: 0;
   animation: fadeIn 1s 0.5s forwards;
@@ -55,6 +84,7 @@
 .card-list-wrapper {
   overflow-x: auto;
   scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
   -ms-overflow-style: none;
   scrollbar-width: none;
   width: 100%;
@@ -73,6 +103,8 @@
   user-select: none;
 }
 .card {
+  scroll-snap-align: start;
+  flex: 0 0 auto;
   width: 120px;
   height: 160px;
   background-color: #2d3748;
@@ -107,6 +139,7 @@
   border-radius: 6px;
   z-index: 1;
 }
+
 .bottom-nav {
   width: 100%;
   max-width: 390px;
