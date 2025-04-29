@@ -53,3 +53,4 @@ body {
 .wrapper:hover::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.3); /* hover할 때만 살짝 어둡게 */
 }
+
