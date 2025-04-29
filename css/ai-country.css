@@ -1,17 +1,11 @@
 /* ai-country.css: 여행 도시 선택 페이지 전용 스타일 */
 
-.back-button {
-  background: none;
-  border: none;
-  color: #ffffff;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
 .earth-icon {
+  padding-top: 30px;
   width: 60px;
   height: auto;
-  margin-bottom: 1.5rem;
+  margin: 0 auto 1.5rem auto; /* 중앙 정렬 */
+  display: block;
 }
 
 .title-text {
@@ -36,6 +30,7 @@
   font-weight: bold;
   margin: 1.5rem 0 0.5rem 0;
   color: #a3dbfe;
+  padding-left: 1rem; /* 왼쪽 여백 추가 */
 }
 
 .city-list {
@@ -43,32 +38,34 @@
   max-width: 400px;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.8rem; /* gap 조금 줄임 */
+  justify-content: center;
+  padding: 1 1rem; /* 좌우 여백 추가! */
 }
 
 .city-button {
-  flex: 1 1 45%;
+  flex: 1 1 42%; /* 버튼 폭 더 줄여서 여백 확보 */
+  max-width: 42%;
   background-color: #e3e6f3;
   color: #202b3b;
   border: 2px solid transparent;
   border-radius: 20px;
-  padding: 0.8rem;
+  padding: 1rem; /* 패딩 조금 줄여서 더 세련되게 */
   font-size: 1rem;
-  font-weight: bold;
   text-align: center;
   cursor: pointer;
   box-sizing: border-box;
+  transition: all 0.3s ease;
 }
 
 .city-button.selected {
   border: 2px solid #5e9dee;
   color: #5e9dee;
   background-color: #ffffff;
-  font-weight: bold;
 }
 
 .finish-button {
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   background-color: #a3dbfe;
   color: #202b3b;
   border: none;
@@ -79,8 +76,25 @@
   width: 100%;
   max-width: 300px;
   cursor: pointer;
+  display: block;
+  margin: 2.5rem auto 0 auto; /* 중앙 정렬 */
 }
 
 .finish-button:hover {
   background-color: #8ac6f0;
+}
+.top-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.8rem; /* ← 살짝 크게 해서 터치 잘 되게 */
+  cursor: pointer;
 }

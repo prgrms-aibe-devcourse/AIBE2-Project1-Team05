@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>여행 스타일 선택</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/ai-style.css" />
+</head>
+<body>
+  <div class="wrapper">
+
+
+    <!-- 상단바  -->
+    <div class="top-bar">
+      <button class="back-button" onclick="location.href='ai-theme.html'">←</button>
+    </div> 
+
+    <!-- 아이콘 -->
+    <img src="assets/images/note.png" alt="노트 아이콘" class="aistyle-icon" />
+
+    <!-- 메인 텍스트 -->
+    <div class="title-text">이번 여행, 어떤 스타일로 떠나볼까요?</div>
+    <div class="sub-text">선호하는 여행 스타일을 선택해주세요.</div>
+
+    <!-- 선택 버튼 -->
+    <div class="style-options">
+      <button class="style-button" onclick="selectStyle(this)">빠끈한 일정 선호</button>
+      <button class="style-button" onclick="selectStyle(this)">널널한 일정 선호</button>
+    </div>
+
+    <!-- 완료 버튼 -->
+    <button class="finish-button" onclick="finishStyle()">선택 완료</button>
+  </div>
+
+  <script src="js/layout.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', applyCommonLayout);
+  </script>
+  <script src="js/ai-style.js"></script>
+</body>
+</html>

@@ -4,39 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>여행 테마 선택</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/ai-theme.css" />
 </head>
 <body>
+  <div class="wrapper">
 
-  <!-- 상단바
-  <div class="top-bar">
-    <button class="back-button" onclick="history.back()">←</button>
-  </div> -->
+    <!-- 상단바  -->
+    <div class="top-bar">
+      <button class="back-button" onclick="location.href='ai-period.html'">←</button>
+    </div> 
 
-  <!-- 여행 가방 이모지 -->
-  <img src="assets/images/suitcase.png" alt="여행 가방 아이콘" class="suitcase-icon">
+    <!-- 여행 가방 이모지 -->
+    <img src="assets/images/suitcase.png" alt="여행 가방 아이콘" class="suitcase-icon" />
 
-  <!-- 질문 텍스트 -->
-  <div class="title-text">어떤 여행을 떠나실건가요?</div>
-  <div class="sub-text">선호하는 여행스타일을 선택해주세요</div>
+    <!-- 질문 텍스트 -->
+    <div class="title-text">어떤 여행을 떠나실건가요?</div>
+    <div class="sub-text">선호하는 여행스타일을 선택해주세요</div>
 
-  <!-- 테마 리스트 -->
-  <div class="theme-list">
-    <button class="theme-button" onclick="selectTheme(this)">🌈 SNS 핫플</button>
-    <button class="theme-button" onclick="selectTheme(this)">🛍️ 도파민 쇼핑</button>
-    <button class="theme-button" onclick="selectTheme(this)">🌲 자연속 힐링</button>
-    <button class="theme-button" onclick="selectTheme(this)">🍽️ 미식가</button>
-    <button class="theme-button" onclick="selectTheme(this)">🏯 유명 관광지</button>
-    <button class="theme-button" onclick="selectTheme(this)">🎿 액티비티</button>
-    <button class="theme-button" onclick="selectTheme(this)">🏕️ 시골 휴양지</button>
-    <button class="theme-button" onclick="selectTheme(this)">💑 인연 만들기</button>
+    <!-- 테마 리스트 -->
+    <div class="theme-list">
+      <button class="theme-button" onclick="selectTheme(this)">🌈 SNS 핫플</button>
+      <button class="theme-button" onclick="selectTheme(this)">🛍️ 도파민 쇼핑</button>
+      <button class="theme-button" onclick="selectTheme(this)">🌲 자연속 힐링</button>
+      <button class="theme-button" onclick="selectTheme(this)">🍽️ 미식가</button>
+      <button class="theme-button" onclick="selectTheme(this)">🏯 유명 관광지</button>
+      <button class="theme-button" onclick="selectTheme(this)">🎿 액티비티</button>
+      <button class="theme-button" onclick="selectTheme(this)">🏕️ 시골 휴양지</button>
+      <button class="theme-button" onclick="selectTheme(this)">💑 인연 만들기</button>
+    </div>
+
+    <!-- 선택 완료 버튼 -->
+    <button class="finish-button" onclick="finishTheme()">선택 완료</button>
   </div>
 
-  <!-- 선택 완료 버튼 -->
-  <button class="finish-button" onclick="finishTheme()">선택 완료</button>
-
+  <script src="js/layout.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', applyCommonLayout);
+  </script>
   <script src="js/ai-theme.js"></script>
-
 </body>
 </html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plan Detail</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/plan-detail.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <div class="plan-detail">
+        <div class="plan-header">
+          <button class="day-tab active" data-day="1">DAY 1</button>
+          <button class="day-tab" data-day="2">DAY 2</button>
+        </div>
+
+        <div class="timeline" data-day="1">
+          <div class="timeline-item">
+            <div class="timeline-number">1</div>
+            <div class="timeline-content">
+              <img src="./assets/images/location1.jpg" alt="장소 이미지" />
+              <span>나리타 국제 공항</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-number">2</div>
+            <div class="timeline-content">
+              <img src="./assets/images/location1.jpg" alt="장소 이미지" />
+              <span>나리타 국제 공항</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline" data-day="2" style="display: none">
+          <div class="timeline-item">
+            <div class="timeline-number">1</div>
+            <div class="timeline-content">
+              <img src="./assets/images/location2.jpg" alt="장소 이미지" />
+              <span>시부야 스크램블</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <script src="js/layout.js"></script>
+        <script defer src="js/plan-detail.js"></script>
+        <script>
+          document.addEventListener("DOMContentLoaded", applyCommonLayout);
+        </script>
+  </body>
+</html>
