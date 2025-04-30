@@ -1,0 +1,36 @@
+.container {
+  max-width: 390px;
+  margin: auto;
+  padding: 20px;
+}
+.hero-image {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+h1,
+h2 {
+  color: #5e9dee;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+ul li {
+  margin-bottom: 10px;
+}
+button {
+  margin-top: 20px;
+  padding: 12px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  background-color: #5e9dee;
+  color: white;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #4b8dd6;
+}
