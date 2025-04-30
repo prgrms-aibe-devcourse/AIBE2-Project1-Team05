@@ -97,7 +97,22 @@ function showSlide(index) {
   currentSlide = index;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function checkAuth() {
+  const currentUser = sessionStorage.getItem('currentUser');
+  if (!currentUser) {
+      window.location.href = 'login.html';
+      return;
+  }
+  return currentUser;
+}
+
+// 페이지 초기화
+document.addEventListener('DOMContentLoaded', () => {
+  const nickname = checkAuth();
+  console.log(nickname);
+  if (nickname) {
+      document.getElementById("username").innerText = nickname;
+  }
   const gridIcon = document.querySelector(".fa-th");
   const calendarIcon = document.querySelector(".fa-calendar-alt");
   const galleryTab = document.querySelector(".gallery-tab");
