@@ -1,47 +1,62 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>후기 작성</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <header class="header">
-    <h1>후기 작성</h1>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>여행 후기 모아보기</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/review.css" />
+    <link rel="stylesheet" href="css/bottom-nav.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h2 class="page-title">여행 후기 모아보기</h2>
+        <div class="review-header-line">
+          <button class="write-review-btn" onclick="openWriteModal()">리뷰 작성</button>
+        </div>
+          
+        <div id="review-list" class="review-list">
+          <!-- JS로 후기 카드 삽입 -->
+        </div>
+      </div>
+    </div>
 
-  <main class="container">
-    <section class="review-form">
-      <form id="reviewForm">
-        <label>방문한 장소명</label>
-        <input type="text" id="place-name" placeholder="장소 이름" required style="width:100%; padding:1rem; margin:0.5rem 0;"/>
+    <!-- 작성 모달 -->
+    <div id="write-modal" class="review-modal hidden">
+      <div class="modal-overlay" onclick="closeWriteModal()"></div>
+      <div class="modal-box">
+        <h3>여행 후기 작성하기</h3>
+        <input type="text" id="write-name" placeholder="작성자 이름" />
+        <input type="text" id="write-place" placeholder="장소 (예: 서울, 부산)" />
+        <textarea id="write-text" placeholder="후기 내용을 입력하세요"></textarea>
+        <input type="file" id="write-img" accept="image/*" />
+        <button onclick="submitReview()">등록</button>
+        <button onclick="closeWriteModal()">닫기</button>
+      </div>
+    </div>
 
-        <label>별점</label>
-        <select id="rating" style="width:100%; padding:1rem; margin:0.5rem 0;">
-          <option value="5">⭐️⭐️⭐️⭐️⭐️ (5점)</option>
-          <option value="4">⭐️⭐️⭐️⭐️ (4점)</option>
-          <option value="3">⭐️⭐️⭐️ (3점)</option>
-          <option value="2">⭐️⭐️ (2점)</option>
-          <option value="1">⭐️ (1점)</option>
-        </select>
 
-        <label>후기 내용</label>
-        <textarea id="review-text" placeholder="후기를 작성해주세요" rows="5" style="width:100%; padding:1rem; margin:0.5rem 0;"></textarea>
+    <!-- 후기 모달 -->
+      <div id="review-modal" class="review-modal hidden">
+        <div class="modal-overlay" onclick="closeReviewModal()"></div>
+        <div class="modal-box">
+          <img id="modal-img" src="" alt="리뷰 이미지" />
+          <div class="modal-text" id="modal-text"></div>
+          <div class="modal-meta" id="modal-meta"></div>
+          <button onclick="closeReviewModal()">닫기</button>
+        </div>
+      </div>
 
-        <button type="submit">후기 저장</button>
-      </form>
+      <div id="bottom-nav-container"></div>
 
-      <p style="text-align:center; margin-top:1rem;">
-        <a href="mypage.html">마이페이지로 돌아가기</a>
-      </p>
-    </section>
-  </main>
+    <script src="js/review.js"></script>
+    <script src="js/review-render.js"></script>
+    <script src="js/layout.js"></script>
 
-  <footer class="footer">
-    <small>© 2025 Trip Planner</small>
-  </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", applyCommonLayout);
+    </script>
 
-  <script src="js/review.js"></script>
-</body>
+  </body>
 </html>
