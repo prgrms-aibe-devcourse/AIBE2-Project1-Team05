@@ -11,21 +11,23 @@ const diaryList = [
     photos: [
       "./assets/images/tokyo1.jpg",
       "./assets/images/tokyo2.jpg",
-      "./assets/images/tokyo3.jpg"
-    ]
+      "./assets/images/tokyo3.jpg",
+    ],
   },
   {
     id: "102",
     title: "하와이 가족 여행",
     period: "2025.05.10 ~ 2025.05.14",
-    route: "호놀룰루 공항 → 와이키키 해변 → 다이아몬드 헤드 → 알라모아나 쇼핑센터",
-    diaryText: "하와이의 햇살과 바다는 정말 최고였다. 가족들과의 소중한 시간이었어.",
+    route:
+      "호놀룰루 공항 → 와이키키 해변 → 다이아몬드 헤드 → 알라모아나 쇼핑센터",
+    diaryText:
+      "하와이의 햇살과 바다는 정말 최고였다. 가족들과의 소중한 시간이었어.",
     photos: [
       "./assets/images/hawaii1.jpg",
       "./assets/images/hawaii2.jpg",
-      "./assets/images/hawaii3.jpg"
-    ]
-  }  
+      "./assets/images/hawaii3.jpg",
+    ],
+  },
 ];
 let currentSlide = 0;
 
@@ -50,14 +52,13 @@ document.addEventListener("DOMContentLoaded", () => {
     currentSlide = (currentSlide - 1 + slides.length) % slides.length;
     showSlide(currentSlide);
   });
-  
+
   document.querySelector(".next-btn")?.addEventListener("click", () => {
     const slides = document.querySelectorAll(".slide-photo");
     if (slides.length === 0) return;
     currentSlide = (currentSlide + 1) % slides.length;
     showSlide(currentSlide);
   });
-  
 
   gridIcon.addEventListener("click", () => {
     galleryTab.style.display = "grid";
@@ -88,17 +89,29 @@ document.addEventListener("DOMContentLoaded", () => {
   addButton.className = "add-diary-tile";
   addButton.innerHTML = "<span>+</span>";
   addButton.addEventListener("click", () => {
-    alert("새 다이어리 작성 화면으로 이동 (또는 모달 표시)");
-    // window.location.href = 'new-diary.html';
+    document.getElementById("newDiaryModal").classList.add("show");
   });
   galleryContainer.appendChild(addButton);
+
+  const newDiaryModal = document.getElementById("newDiaryModal");
+  const closeNewDiary = document.getElementById("closeNewDiary");
+
+  closeNewDiary.addEventListener("click", () => {
+    newDiaryModal.classList.remove("show");
+  });
+
+  newDiaryModal.addEventListener("click", (e) => {
+    if (e.target === newDiaryModal) {
+      newDiaryModal.classList.remove("show");
+    }
+  });
 
   const diaryModal = document.getElementById("diaryModal");
   const closeDiary = document.querySelector(".close-diary");
   galleryContainer.addEventListener("click", (e) => {
     if (e.target.classList.contains("gallery-photo")) {
       const diaryId = e.target.dataset.diaryId;
-      const selected = diaryList.find(d => d.id === diaryId);
+      const selected = diaryList.find((d) => d.id === diaryId);
       if (selected) openDiaryModal(selected);
     }
   });
@@ -137,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const calendarGrid = document.querySelector(".calendar-grid");
-  diaryList.forEach(plan => {
+  diaryList.forEach((plan) => {
     const card = document.createElement("div");
     card.className = "plan-card";
     card.dataset.planId = plan.id;
@@ -198,10 +211,10 @@ document.addEventListener("DOMContentLoaded", () => {
     cancelBtn.style.display = "none";
     saveBtn.style.display = "none";
   });
-  const profileHeader = document.querySelector('.profile-header');
+  const profileHeader = document.querySelector(".profile-header");
   if (profileHeader) {
     setTimeout(() => {
-      profileHeader.classList.add('show');
+      profileHeader.classList.add("show");
     }, 100); // 약간의 딜레이를 줘서 더 부드럽게
   }
 });
