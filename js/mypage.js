@@ -25,7 +25,66 @@ const diaryList = [
       "./assets/images/hawaii2.jpg",
       "./assets/images/hawaii3.jpg"
     ]
-  }  
+  },
+  {
+    id: "103",
+    title: "부산 해운대 여행",
+    period: "2025.06.02 ~ 2025.06.04",
+    route: "부산역 → 해운대 → 광안리 → 감천문화마을",
+    diaryText: "바다 냄새와 맛있는 회! 최고의 힐링 여행이었다.",
+    photos: [
+      "./assets/images/busan1.jpg",
+      "./assets/images/busan2.jpg",
+    ]
+  },
+  {
+    id: "104",
+    title: "제주도 렌터카 일주",
+    period: "2025.07.12 ~ 2025.07.17",
+    route: "제주공항 → 협재 해수욕장 → 성산일출봉 → 우도",
+    diaryText: "제주도에서 먹은 흑돼지와 말고기, 그리고 풍경은 잊지 못해.",
+    photos: [
+      "./assets/images/jeju1.jpg",
+      "./assets/images/jeju2.jpg",
+      "./assets/images/jeju3.jpg"
+    ]
+  },
+  {
+    id: "105",
+    title: "뉴욕 도시 탐방",
+    period: "2025.09.01 ~ 2025.09.08",
+    route: "JFK 공항 → 타임스퀘어 → 센트럴파크 → 자유의 여신상",
+    diaryText: "바쁘고 정신없는 도시지만, 에너지가 넘쳐서 좋았다!",
+    photos: [
+      "./assets/images/ny1.jpg",
+      "./assets/images/ny2.jpg",
+    ]
+  },
+  {
+    id: "106",
+    title: "파리 미술관 투어",
+    period: "2025.10.10 ~ 2025.10.15",
+    route: "오르리 미술관 → 루브르 → 에펠탑 → 몽마르트",
+    diaryText: "예술의 도시 파리에서 하루 종일 그림만 보고 다녔다.",
+    photos: [
+      "./assets/images/paris1.jpg",
+      "./assets/images/paris2.jpg",
+      "./assets/images/paris3.jpg"
+    ]
+  },
+  {
+    id: "107",
+    title: "스위스 자연 힐링",
+    period: "2025.11.05 ~ 2025.11.11",
+    route: "인터라켄 → 루체른 → 체르마트",
+    diaryText: "알프스의 풍경은 사진보다 훨씬 감동적이었다. 꼭 다시 가고 싶다.",
+    photos: [
+      "./assets/images/swiss1.jpg",
+      "./assets/images/swiss2.jpg",
+      "./assets/images/swiss3.jpg"
+    ]
+  }
+  
 ];
 let currentSlide = 0;
 
@@ -90,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
   addButton.addEventListener("click", () => {
     document.getElementById("newDiaryModal").classList.add("show");
   });
-  galleryContainer.appendChild(addButton);
+  galleryContainer.prepend(addButton);
 
   const newDiaryModal = document.getElementById("newDiaryModal");
 const closeNewDiary = document.getElementById("closeNewDiary");
