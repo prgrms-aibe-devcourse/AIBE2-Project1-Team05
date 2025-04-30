@@ -81,5 +81,13 @@
       // 공통 레이아웃 적용 (바텀 네비게이션 포함)
       document.addEventListener("DOMContentLoaded", applyCommonLayout);
     </script>
+    <script src="../js/layout.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        applyCommonLayout();
+        // 페이지 로드 완료 시 콘텐츠 표시
+        document.body.classList.add('loaded');
+      });
+    </script>
   </body>
 </html>
