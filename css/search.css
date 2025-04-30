@@ -1,0 +1,120 @@
+.logo {
+    display: block;
+    margin: 0 auto 20px auto; /* 수직 여백 포함 가운데 정렬 */
+    width: 120px; /* 필요시 크기 조절 */
+    padding-top: 50px;
+  }
+  
+  .search-bar {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 24px auto;  /* 가운데 정렬 */
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-radius: 8px;
+    padding: 0 5px;
+    box-sizing: border-box;
+  }
+  .search-bar input::placeholder {
+    color: white; /* placeholder 텍스트 색상 */
+  }
+  
+  .search-bar input {
+    width: 100%;
+    padding: 10px 40px 10px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    background-color: #2d3748;
+    color: white;
+  }
+  
+  .search-bar .search-icon {
+    margin-left: -30px;
+    color: #e3e6f3;
+  }
+  .filters {
+    display: flex;
+    flex-wrap: nowrap; /* wrap 제거 */
+    gap: 10px;
+    margin: 16px 0;
+    align-items: center;
+    overflow-x: auto; /* 필요 시 가로 스크롤 */
+    padding: 0 5px; /* 좌우 여백 추가 */
+    box-sizing: border-box; /* 패딩 포함 */
+  }
+  
+  #resultContainer.result-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  .result-card {
+    background: #e3e6f3;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+  }
+  .result-card:hover {
+    transform: translateY(-4px);
+  }
+  .result-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+  }
+  .result-content {
+    padding: 12px;
+  }
+  .result-content h4 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    color: #202b3b;
+  }
+  .result-content p {
+    font-size: 14px;
+    color: #333;
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 16px 0;
+    align-items: center;
+  }
+  
+  .filters select,
+  .filters input[type="date"] {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #2d3748;;
+    color: white;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    font-size: 14px;
+    max-width: 150px; /* 필요시 조정 */
+    flex-shrink: 1; 
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .search-icon {
+    position: absolute;
+    right: 20px;
+    font-size: 16px;
+    color: #888;
+    cursor: pointer;  /* 포인터로 변경 */
+  }
+  .filters select:focus,
+.filters input[type="date"]:focus,
+.search-bar input:focus {
+  outline: none; /* 기본 브라우저 테두리 제거 */
+  border: 1px solid #5e9dee; /* 테두리 색 강조 */
+  box-shadow: 0 0 6px rgba(94, 157, 238, 0.3); /* 부드러운 그림자 */
+  background-color: #2d3748;
+}
