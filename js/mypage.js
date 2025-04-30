@@ -146,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
     gridIcon.classList.remove("active");
     calendarIcon.classList.add("active");
   });
+  
 
   const galleryContainer = document.querySelector(".photo-grid");
   diaryList.forEach((diary) => {
@@ -348,4 +349,13 @@ document.addEventListener("DOMContentLoaded", () => {
     profileImage.src = previewImage.src;
     modal.classList.remove("show");
   });
+
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const shouldOpenNewDiary = urlParams.get("open") === "new-diary";
+  if (shouldOpenNewDiary) {
+    const newDiaryModal = document.getElementById("newDiaryModal");
+    newDiaryModal?.classList.add("show");
+  }
+
 });
