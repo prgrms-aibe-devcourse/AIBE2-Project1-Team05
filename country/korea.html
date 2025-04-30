@@ -56,6 +56,14 @@
         </button>
         <button onclick="history.back()">⬅ 뒤로가기</button>
       </footer>
+      <script src="../js/layout.js"></script>
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          applyCommonLayout();
+          // 페이지 로드 완료 시 콘텐츠 표시
+          document.body.classList.add('loaded');
+        });
+      </script>
     </div>
   </body>
 </html>
