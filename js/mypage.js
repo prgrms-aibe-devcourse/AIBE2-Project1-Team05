@@ -218,6 +218,60 @@ newDiaryModal.addEventListener("click", (e) => {
       profileHeader.classList.add('show');
     }, 100); // 약간의 딜레이를 줘서 더 부드럽게
   }
+  
 });
 
 
+document.addEventListener("DOMContentLoaded", () => {
+  const editBtn = document.querySelector(".edit-profile-btn");
+  const modal = document.getElementById("editProfileModal");
+  const closeBtn = document.querySelector(".close-profile");
+  const saveBtn = document.getElementById("saveProfileBtn");
+
+  const nicknameDisplay = document.querySelector(".nickname");
+  const descriptionDisplay = document.querySelector(".description");
+  const profileImage = document.getElementById("profileImage");
+
+  const nicknameInput = document.getElementById("editNickname");
+  const descriptionInput = document.getElementById("editDescription");
+  const imageInput = document.getElementById("imageInput");
+  const previewImage = document.getElementById("previewImage");
+
+  // 열기
+  editBtn.addEventListener("click", () => {
+    nicknameInput.value = nicknameDisplay.textContent;
+    descriptionInput.value = descriptionDisplay.textContent;
+    previewImage.src = profileImage.src;
+    modal.classList.add("show");
+    console.log("sdfsdf")
+  });
+
+  // 닫기
+  closeBtn.addEventListener("click", () => {
+    modal.classList.remove("show");
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) modal.classList.remove("show");
+  });
+
+  // 이미지 업로드 미리보기
+  imageInput.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        previewImage.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // 저장
+  saveBtn.addEventListener("click", () => {
+    nicknameDisplay.textContent = nicknameInput.value;
+    descriptionDisplay.textContent = descriptionInput.value;
+    profileImage.src = previewImage.src;
+    modal.classList.remove("show");
+  });
+});
