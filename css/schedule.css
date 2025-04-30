@@ -1,9 +1,24 @@
-body {
-  margin: 0;
-  font-family: "Pretendard", sans-serif;
+/* 복사 버튼 관련 CSS 스타일 */
+#copy-toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: #1e2734;
-  color: #e3e6f3;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+  font-size: 14px;
 }
+#copy-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px);
+}
+
 .container {
   max-width: 390px;
   margin: 0 auto;
@@ -127,7 +142,28 @@ body {
   color: #5e9dee;
   cursor: pointer;
 }
+
+/* 맵 플레이스홀더 */
 .map-placeholder {
   color: #a0a4b8;
   font-size: 14px;
+}
+
+/* 편집 버튼 관련 */
+.edit {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: #5e9dee;
+  background-color: transparent;
+  border: 1px solid #5e9dee;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-align: center;
+}
+
+.edit:hover {
+  background-color: #5e9dee;
+  color: white;
 }

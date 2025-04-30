@@ -1,0 +1,64 @@
+/* 알림 페이지 상단 제목 스타일 */
+.page-title {
+  font-size: 20px;
+  margin: 20px 0 10px;
+  text-align: center;
+  color: #e3e6f3;
+  position: relative;
+}
+
+/* 구분선 추가 */
+.page-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(to right, #5e9dee, #a3dbfe);
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+/* 알림 제목 */
+.notification-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: #ffd369;
+  margin-bottom: 6px;
+}
+
+/* 알림 목록 전체 여백 */
+.notification-list {
+  list-style: none;
+  padding: 0 16px; /* 좌우 여백 추가 */
+  margin: 0;
+}
+
+/* 알림 카드 스타일 */
+.notification-list li {
+  background-color: #2d3748;
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* 알림에 호버시 일어나는 일 */
+.notification-list li:hover {
+  background-color: #3a4556;
+  transform: translateY(-2px);
+}
+
+/* 메세지 작성 */
+.message {
+  color: #e3e6f3;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+/* 타임스탬프 */
+.timestamp {
+  font-size: 12px;
+  color: #a0a4b8;
+}

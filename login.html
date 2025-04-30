@@ -1,35 +1,81 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PLANITE - 로그인</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/auth.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/auth.css" />
+  </head>
+  <body>
     <div class="logo">
-        <img src="assets/images/planite.png" alt="Planite 로고">
-        <div class="logo-text">Planite</div>
+      <img src="assets/images/planite.png" alt="Planite 로고" />
     </div>
     <div class="slogan">PLANITE가 당신의 여행 궤도를 설계합니다</div>
-    
+
     <div class="form-container">
-        <form id="loginForm" class="input-container">
-            <input type="text" class="nickname-input" id="nickname" placeholder="닉네임을 입력해주세요" 
-                    maxlength="10" pattern="[가-힣A-Za-z0-9]{2,10}" required>
-            <button type="submit" class="start-button">
-                <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
-        </form>
-        <div class="auth-links">
-            처음이신가요? <a href="signup.html">회원가입</a>
-        </div>
+      <form id="loginForm" class="input-container">
+        <input
+          type="text"
+          class="nickname-input"
+          id="nickname"
+          placeholder="닉네임을 입력해주세요"
+          maxlength="10"
+          pattern="[가-힣A-Za-z0-9]{2,10}"
+          required
+        />
+        <button type="submit" class="start-button">
+          <svg
+            class="arrow-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 12H19M19 12L12 5M19 12L12 19"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+      </form>
+      <div class="auth-links">
+        처음이신가요? <a href="signup.html">회원가입</a>
+      </div>
     </div>
 
     <script>
+   feature/main-page
+      // 이미 저장된 닉네임이 있는지 확인
+      window.onload = function () {
+        const savedNickname = localStorage.getItem("userNickname");
+        if (savedNickname) {
+          document.getElementById("nickname").value = savedNickname;
+        }
+      };
+
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const nickname = document.getElementById("nickname").value;
+          const savedNickname = localStorage.getItem("userNickname");
+
+          if (!savedNickname) {
+            alert("등록되지 않은 닉네임입니다. 회원가입을 먼저 진행해주세요.");
+            return;
+          }
+
+          if (nickname !== savedNickname) {
+            alert("잘못된 닉네임입니다. 다시 확인해주세요.");
+            return;
+          }
+
+          // 로그인 성공 시 메인 페이지로 이동
+          window.location.href = "main.html";
+
         // 이미 로그인된 사용자인지 확인
         window.onload = function() {
             const currentUser = sessionStorage.getItem('currentUser');
@@ -58,5 +104,5 @@
             window.location.href = 'main.html';
         });
     </script>
-</body>
+  </body>
 </html>

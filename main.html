@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Planite Main Page</title>
+
+    <!-- 공통 및 페이지별 스타일 -->
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/bottom-nav.css" />
@@ -17,12 +19,16 @@
       }
     </style>
   </head>
+
   <body>
     <div class="wrapper">
       <div class="container">
+        <!-- 사용자 프로필 이미지 -->
         <div class="profile">
           <img src="assets/images/inbong.png" alt="프로필 사진" />
         </div>
+
+        <!-- 환영 메세지 -->
         <div class="welcome">
           <h2>
             <span class="highlight" id="username"></span> 님, 환영합니다!
@@ -30,32 +36,45 @@
           <p>같이 새 일정을 만들어 볼까요?</p>
         </div>
 
+
+        <!-- AI 일정 추천 버튼 -->
         <button class="ai-button" onclick="location.href='ai-intro.html'">
           AI 추천 일정 받아보기!
         </button>
 
+        <!-- 여행지 섹션 타이틀 -->
         <div class="section-title">
           요즘 <span class="highlight">핫한 여행지를</span> 소개해드립니다!
         </div>
 
+        <!-- 여행지 카드 리스트 -->
         <div class="card-list-wrapper">
           <div class="card-list">
+            <!-- 프랑스 카드 -->
             <div class="card" onclick="location.href='country/france.html'">
               <img src="assets/images/france.jpg" alt="프랑스" />
               <div class="card-text">프랑스, 툴루즈</div>
             </div>
+
+            <!-- 일본 카드 -->
             <div class="card" onclick="location.href='country/japan.html'">
               <img src="assets/images/japan.jpg" alt="일본" />
               <div class="card-text">일본, 오사카</div>
             </div>
+
+            <!-- 베트남 카드 -->
             <div class="card" onclick="location.href='country/vietnam.html'">
               <img src="assets/images/vietnam.jpg" alt="베트남" />
               <div class="card-text">베트남, 호치민</div>
             </div>
+
+            <!-- 한국 카드 -->
             <div class="card" onclick="location.href='country/korea.html'">
               <img src="assets/images/seoul.jpg" alt="서울" />
               <div class="card-text">대한민국, 서울</div>
             </div>
+
+            <!-- 중국 카드 -->
             <div class="card" onclick="location.href='country/china.html'">
               <img src="assets/images/china.jpg" alt="베이징" />
               <div class="card-text">중국, 베이징</div>
@@ -79,12 +98,16 @@
     </div>
 
 
-    <div id="bottom-nav-container"></div>
+    <!-- 페이지 스크립트 (공통 하단 네비게이션) -->
 
+    <div id="bottom-nav-container"></div>
     <script src="js/review.js"></script>
     <script src="js/main.js"></script>
     <script src="js/layout.js"></script>
     <script>
+
+      // 공통 레이아웃 적용 (바텀 네비게이션 포함)
+
       document.addEventListener("DOMContentLoaded", () => {
         applyCommonLayout();
         // 페이지 로드 완료 시 콘텐츠 표시
