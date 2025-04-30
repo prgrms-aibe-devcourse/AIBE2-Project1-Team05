@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>여행 검색</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/search.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+        <img src="./assets/images/planite.png" class="logo"/>
+        <!-- 검색창 -->
+        <div class="search-bar">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="여행지 또는 후기를 검색해보세요"
+          />
+          <i class="fas fa-search search-icon"></i>
+        </div>
+        <div class="filters">
+          <select id="categoryFilter">
+            <option value="전체">전체</option>
+            <option value="여행지">여행지</option>
+            <option value="후기">후기</option>
+            <option value="가이드">가이드</option>
+          </select>
+          <input type="date" id="startDate" />
+          <span>~</span>
+          <input type="date" id="endDate" />
+        </div>
+  
+        <!-- 결과 컨테이너 -->
+        <div id="resultContainer" class="result-grid"></div>
+      </div>
+  
+    <script src="./js/layout.js"></script>
+    <script src="./js/search.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", applyCommonLayout);
+      </script>
+  </body>
+</html>
