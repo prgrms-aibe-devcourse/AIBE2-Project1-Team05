@@ -48,40 +48,32 @@
 
     <script>
       // 이미 로그인된 사용자인지 확인
-      window.onload = function () {
-        const currentUser = sessionStorage.getItem("currentUser");
-        if (currentUser) {
-          window.location.href = "main.html";
-          return;
-        }
-
-        const savedNickname = localStorage.getItem("userNickname");
-        if (savedNickname) {
-          document.getElementById("nickname").value = savedNickname;
-        }
+      window.onload = function() {
+          const currentUser = sessionStorage.getItem('currentUser');
+          if (currentUser) {
+              window.location.href = 'main.html';
+              return;
+          }
       };
 
-      // 로그인 폼 제출 이벤트 처리
-      document
-        .getElementById("loginForm")
-        .addEventListener("submit", function (e) {
+      document.getElementById('loginForm').addEventListener('submit', function(e) {
           e.preventDefault();
-          const nickname = document.getElementById("nickname").value;
-
+          const nickname = document.getElementById('nickname').value;
+          
           // 등록된 사용자 목록 확인
-          const registeredUsers = JSON.parse(
-            localStorage.getItem("registeredUsers") || "[]"
-          );
-
+          const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+          
           if (!registeredUsers.includes(nickname)) {
-            alert("등록되지 않은 닉네임입니다. 회원가입을 먼저 진행해주세요.");
-            return;
+              alert('등록되지 않은 닉네임입니다. 회원가입을 먼저 진행해주세요.');
+              return;
           }
-
+          
           // 로그인 성공: 세션 스토리지에 현재 사용자 정보 저장
-          sessionStorage.setItem("currentUser", nickname);
-          window.location.href = "main.html";
-        });
-    </script>
+          sessionStorage.setItem('currentUser', nickname);
+          
+          // 메인 페이지로 이동
+          window.location.href = 'main.html';
+      });
+  </script>
   </body>
 </html>
