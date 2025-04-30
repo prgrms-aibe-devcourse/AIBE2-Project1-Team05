@@ -1,6 +1,20 @@
-// 사용자 이름 표시
-const username = "인봉";
-document.getElementById("username").innerText = username;
+// 세션 체크 및 사용자 인증 확인
+function checkAuth() {
+    const currentUser = sessionStorage.getItem('currentUser');
+    if (!currentUser) {
+        window.location.href = 'login.html';
+        return;
+    }
+    return JSON.parse(currentUser);
+}
+
+// 페이지 초기화
+document.addEventListener('DOMContentLoaded', () => {
+    const user = checkAuth();
+    if (user) {
+        document.getElementById("username").innerText = user.nickname;
+    }
+});
 
 // 직접 드래그 기능
 const slider = document.querySelector(".card-list-wrapper");
