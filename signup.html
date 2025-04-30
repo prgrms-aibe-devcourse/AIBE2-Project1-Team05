@@ -39,11 +39,19 @@
                 alert('닉네임은 2-10자 사이여야 합니다.');
                 return;
             }
+
+            // 이미 등록된 닉네임인지 확인
+            const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+            if (registeredUsers.includes(nickname)) {
+                alert('이미 등록된 닉네임입니다. 다른 닉네임을 선택해주세요.');
+                return;
+            }
             
-            // 닉네임을 로컬 스토리지에 저장
-            localStorage.setItem('userNickname', nickname);
+            // 새로운 닉네임을 등록된 사용자 목록에 추가
+            registeredUsers.push(nickname);
+            localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
             
-            // 로그인 페이지로 이동
+            alert('회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.');
             window.location.href = 'login.html';
         });
     </script>
