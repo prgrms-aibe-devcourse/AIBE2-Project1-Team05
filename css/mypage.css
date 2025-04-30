@@ -422,7 +422,7 @@ textarea {
 }
 
 /* 공통 닫기 버튼 스타일 */
-#newDiaryModal .close-diary {
+#newDiaryModal .close-new-diary {
   position: absolute;
   top: 10px;
   right: 15px;
