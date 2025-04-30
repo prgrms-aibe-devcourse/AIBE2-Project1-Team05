@@ -635,6 +635,7 @@ textarea {
   border: none;
   margin-bottom: 12px;
   font-size: 14px;
+  box-sizing: border-box; 
 }
 
 /* 저장 버튼 */
@@ -666,6 +667,12 @@ textarea {
   }
 }
 
+.profile-image-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
 #previewImage {
   width: 80px;
