@@ -30,13 +30,9 @@
 
         <!-- 환영 메세지 -->
         <div class="welcome">
-          <h2>
-            <span class="highlight" id="username"></span> 님, 환영합니다!
-          </h2>
+          <h2><span class="highlight" id="username"></span> 님, 환영합니다!</h2>
           <p>같이 새 일정을 만들어 볼까요?</p>
         </div>
-
-
         <!-- AI 일정 추천 버튼 -->
         <button class="ai-button" onclick="location.href='ai-intro.html'">
           AI 추천 일정 받아보기!
@@ -84,8 +80,12 @@
 
         <!-- 후기 섹션 -->
         <div class="review-header">
-          <div class="section-title"><span class="highlight">여행 후기</span>도 만나보세요</div>
-          <button class="review-more-btn" onclick="location.href='review.html'">+ 더보기</button>
+          <div class="section-title">
+            <span class="highlight">여행 후기</span>도 만나보세요
+          </div>
+          <button class="review-more-btn" onclick="location.href='review.html'">
+            + 더보기
+          </button>
         </div>
 
         <div class="review-list-wrapper">
@@ -94,27 +94,21 @@
           </div>
         </div>
       </div>
-      
     </div>
 
-
     <!-- 페이지 스크립트 (공통 하단 네비게이션) -->
-
     <div id="bottom-nav-container"></div>
     <script src="js/review.js"></script>
     <script src="js/main.js"></script>
     <script src="js/layout.js"></script>
+
     <script>
-
       // 공통 레이아웃 적용 (바텀 네비게이션 포함)
-
       document.addEventListener("DOMContentLoaded", () => {
         applyCommonLayout();
         // 페이지 로드 완료 시 콘텐츠 표시
-        document.body.classList.add('loaded');
+        document.body.classList.add("loaded");
       });
     </script>
-
-
   </body>
 </html>
