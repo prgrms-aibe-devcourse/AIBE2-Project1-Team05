@@ -2,11 +2,12 @@
 .profile-header {
   display: flex;
   align-items: center;
+  gap: 16px;
   padding: 20px;
   padding-top: 100px;
   color: #fff;
   opacity: 0;
-  transform: translateY(-20px); /* 살짝 위 */
+  transform: translateY(-20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 .profile-header.show {
@@ -17,13 +18,15 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  margin-right: 16px;
+  padding-top: 5px;
 }
 .profile-header .nickname {
+  margin-top: 0;
   font-size: 18px;
   font-weight: bold;
 }
 .profile-header .description {
+  padding-top: 10px;
   font-size: 14px;
   opacity: 0.8;
 }
@@ -35,7 +38,7 @@
   padding: 10px 0;
 }
 .profile-tabs i {
-  color: #fff;
+  color: #d8e7ff;
   font-size: 24px;
   opacity: 0.6;
 }
@@ -512,7 +515,7 @@ textarea {
 /* 저장 버튼 */
 #newDiaryModal #saveNewDiary {
   padding: 10px;
-  background-color: #0245a3;
+  background-color: #5e9dee;
   color: white;
   border: none;
   border-radius: 8px;
@@ -555,4 +558,169 @@ textarea {
   cursor: pointer;
   height: 100%;
   width: 100%;
+}
+/* 모달 전체 배경 */
+
+.profile-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.profile-modal.show {
+  display: flex;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/* 모달 박스 */
+.profile-modal-content {
+  background-color: #e3e6f3;
+  padding: 24px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 360px;
+  color: white;
+  position: relative;
+  text-align: center;
+}
+
+/* 닫기 버튼 */
+.close-profile {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 20px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+/* 프로필 이미지 */
+#previewImage {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 8px;
+}
+
+/* 업로드 버튼 */
+.upload-btn {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: #5e9dee;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.profile-modal-content input[type="file"] {
+  display: none;
+}
+
+/* 입력 필드 */
+.profile-modal-content input,
+.profile-modal-content textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+/* 저장 버튼 */
+#saveProfileBtn {
+  width: 100%;
+  padding: 10px;
+  background-color: #5e9dee;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#saveProfileBtn:hover {
+  background-color: #84d0ff;
+}
+
+/* 나타나는 애니메이션 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+#previewImage {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 8px;
+}
+
+.upload-btn {
+  padding: 6px 12px;
+  background-color: #5e9dee;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.profile-image-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-image-area img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0;
+}
+
+.edit-profile-btn {
+  margin-top: 1px;
+  width: 80px;
+  padding: 5px 10px;
+  color: #d8e7ff;
+  border:#d8e7ff;
+  border-radius: 8px;
+  font-size: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color:transparent;
+}
+
+.edit-profile-btn:hover {
+  background-color: #d8e7ff4d;
+}
+.profile-tabs i {
+  color: #999; /* 비활성 아이콘 기본색 */
+}
+
+.profile-tabs i.active {
+  color: #d8e7ff; /* 활성 아이콘 색상 */
 }
