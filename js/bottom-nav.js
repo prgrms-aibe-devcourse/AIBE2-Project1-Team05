@@ -1,7 +1,7 @@
 let isNavVisible = false;
 
 function loadBottomNav() {
-  fetch("./components/bottom-nav.html")
+  fetch("/components/bottom-nav.html")
     .then((response) => response.text())
     .then((data) => {
       document.getElementById("bottom-nav-container").innerHTML = data;

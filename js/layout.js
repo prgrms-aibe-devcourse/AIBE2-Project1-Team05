@@ -7,14 +7,14 @@ function applyCommonLayout() {
 
   // bottom-nav.js 스크립트 추가
   const bottomNavScript = document.createElement("script");
-  bottomNavScript.src = "js/bottom-nav.js";
+  bottomNavScript.src = "/js/bottom-nav.js";
   document.body.appendChild(bottomNavScript);
 
-  // bottom-nav.css 스타일 추가
-  if (!document.querySelector('link[href="css/bottom-nav.css"]')) {
+  // bottom-nav.css 스타일 추가 
+  if (!document.querySelector('link[href="/css/bottom-nav.css"]')) {
     const bottomNavStyle = document.createElement("link");
     bottomNavStyle.rel = "stylesheet";
-    bottomNavStyle.href = "css/bottom-nav.css";
+    bottomNavStyle.href = "/css/bottom-nav.css";
     document.head.appendChild(bottomNavStyle);
   }
 
