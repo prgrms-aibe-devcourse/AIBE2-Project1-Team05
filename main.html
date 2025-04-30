@@ -29,6 +29,7 @@
           </h2>
           <p>같이 새 일정을 만들어 볼까요?</p>
         </div>
+
         <button class="ai-button" onclick="location.href='ai-intro.html'">
           AI 추천 일정 받아보기!
         </button>
@@ -61,12 +62,26 @@
             </div>
           </div>
         </div>
+
+        <!-- 후기 섹션 -->
+        <div class="review-header">
+          <div class="section-title"><span class="highlight">여행 후기</span>도 만나보세요</div>
+          <button class="review-more-btn" onclick="location.href='review.html'">+ 더보기</button>
+        </div>
+
+        <div class="review-list-wrapper">
+          <div class="review-list" id="main-review-list">
+            <!-- JS에서 리뷰 카드 3개 삽입 예정 -->
+          </div>
+        </div>
       </div>
+      
     </div>
 
+
+    <script src="js/review.js"></script>
     <script src="js/main.js"></script>
     <script src="js/layout.js"></script>
-
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         applyCommonLayout();
@@ -74,5 +89,7 @@
         document.body.classList.add('loaded');
       });
     </script>
+
+
   </body>
 </html>
