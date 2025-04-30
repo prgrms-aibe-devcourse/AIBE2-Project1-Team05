@@ -167,3 +167,86 @@
     opacity: 1;
   }
 }
+
+/* 🔹 후기 섹션 타이틀 (텍스트 + 버튼 한 줄 배치) */
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  opacity: 0;
+  animation: fadeIn 1s 0.5s forwards;
+}
+
+.review-header .section-title {
+  margin: 0;
+  font-size: 16px;
+  color: #e3e6f3;
+}
+
+/* 🔹 후기 더보기 버튼 (오른쪽 작게) */
+.review-more-btn {
+  background: none;
+  color: #a0a4b8;
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  padding-right: 10px;
+}
+.review-more-btn:hover {
+  color: #5e9dee;
+}
+
+/* 🔹 후기 슬라이드 리스트 */
+.review-list-wrapper {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  width: 100%;
+  user-select: none;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.review-list-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.review-list {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  width: max-content;
+}
+.review-card {
+  scroll-snap-align: start;
+  flex: 0 0 auto;
+  width: 220px;
+  height: 100px;
+  background-color: #2d3748;
+  border-radius: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  color: #fff;
+}
+.review-card img {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.review-text {
+  font-size: 13px;
+  line-height: 1.4;
+}
+.review-text span {
+  display: block;
+  font-size: 11px;
+  color: #a0a4b8;
+  margin-top: 4px;
+}
+
