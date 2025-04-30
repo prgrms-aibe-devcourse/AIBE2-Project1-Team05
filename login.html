@@ -1,34 +1,157 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>로그인</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLANITE</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background-color: #1c2331;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        img {
+            width: 150px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+        .logo-text {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .slogan {
+            font-size: 1rem;
+            color: #cccccc;
+            margin-bottom: 2rem;
+        }
+        .form-container {
+            width: 280px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .input-container {
+            position: relative;
+            width: 100%;
+        }
+        .nickname-input {
+            width: 100%;
+            padding: 12px 48px 12px 20px;
+            border: none;
+            border-radius: 24px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            box-sizing: border-box;
+        }
+        .nickname-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .nickname-input:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        .start-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 1px;
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            background-color: #5e9dee;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .start-button:hover {
+            opacity: 0.9;
+        }
+        .auth-links {
+            width: 100%;
+            text-align: right;
+            font-size: 0.85rem;
+            color: #cccccc;
+            padding-right: 5px;
+        }
+        .auth-links a {
+            color: #cccccc;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+        .auth-links a:hover {
+            color: #ffffff;
+        }
+        .arrow-icon {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
 </head>
 <body>
-  <header class="header">
-    <h1>로그인</h1>
-  </header>
+    <img src="assets/images/planite.png" alt="Planite 로고">
+    <div class="logo-text">Planite</div>
+    <div class="slogan">PLANITE가 당신의 여행 궤도를 설계합니다</div>
+    
+    <div class="form-container">
+        <form id="loginForm" class="input-container">
+            <input type="text" class="nickname-input" id="nickname" placeholder="닉네임을 입력해주세요" 
+                   maxlength="10" pattern="[가-힣A-Za-z0-9]{2,10}" required>
+            <button type="submit" class="start-button">
+                <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </form>
+        <div class="auth-links">
+            처음이신가요? <a href="signup.html">회원가입</a>
+        </div>
+    </div>
 
-  <main class="container">
-    <section class="login-form">
-      <form id="loginForm">
-        <input type="email" id="email" placeholder="이메일" required style="width:100%; padding:1rem; margin:0.5rem 0;"/>
-        <input type="password" id="password" placeholder="비밀번호" required style="width:100%; padding:1rem; margin:0.5rem 0;"/>
-        <button type="submit">로그인</button>
-      </form>
+    <script>
+        // 이미 저장된 닉네임이 있는지 확인
+        window.onload = function() {
+            const savedNickname = localStorage.getItem('userNickname');
+            if (savedNickname) {
+                document.getElementById('nickname').value = savedNickname;
+            }
+        };
 
-      <p style="text-align:center; margin-top:1rem;">
-        계정이 없으신가요? <a href="signup.html">회원가입</a>
-      </p>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <small>© 2025 Trip Planner</small>
-  </footer>
-
-  <script src="js/auth.js"></script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nickname = document.getElementById('nickname').value;
+            const savedNickname = localStorage.getItem('userNickname');
+            
+            if (!savedNickname) {
+                alert('등록되지 않은 닉네임입니다. 회원가입을 먼저 진행해주세요.');
+                return;
+            }
+            
+            if (nickname !== savedNickname) {
+                alert('잘못된 닉네임입니다. 다시 확인해주세요.');
+                return;
+            }
+            
+            // 로그인 성공 시 메인 페이지로 이동
+            window.location.href = 'main.html';
+        });
+    </script>
 </body>
 </html>
