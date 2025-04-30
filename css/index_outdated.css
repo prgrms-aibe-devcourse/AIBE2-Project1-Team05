@@ -1,0 +1,23 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 1s ease; /* 부드럽게 1초 동안 투명도 변화 */
+}
+
+img {
+  width: 150px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+.logo-text {
+  font-size: 2rem;
+  font-weight: bold;
+}
+.slogan {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #cccccc;
+}
