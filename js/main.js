@@ -5,14 +5,15 @@ function checkAuth() {
         window.location.href = 'login.html';
         return;
     }
-    return JSON.parse(currentUser);
+    return currentUser;
 }
 
 // 페이지 초기화
 document.addEventListener('DOMContentLoaded', () => {
-    const user = checkAuth();
-    if (user) {
-        document.getElementById("username").innerText = user.nickname;
+    const nickname = checkAuth();
+    console.log(nickname);
+    if (nickname) {
+        document.getElementById("username").innerText = nickname;
     }
 });
 
