@@ -28,8 +28,7 @@
 
         <nav class="day-tabs" id="day-tabs"></nav>
         <main class="itinerary-content" id="itinerary-content"></main>
-        
-        <!-- 내 일정으로 담기 버튼 추가 -->
+
         <div class="save-button-container">
             <button id="save-to-my-plan" class="save-to-my-plan">
                 <i class="fas fa-calendar-plus"></i> 내 일정으로 담기
@@ -41,13 +40,14 @@
     <script src="./js/config.js"></script>
     <script src="./js/result.js" defer></script>
     <script>
+      // Google Maps 스크립트 로드 함수
       function loadGoogleMapsScript() {
           if (typeof window.GOOGLE_MAP_API_KEY === 'string' && window.GOOGLE_MAP_API_KEY) {
               const script = document.createElement('script');
               // 콜백 함수 이름 'initMap' 확인
               script.src = `https://maps.googleapis.com/maps/api/js?key=${window.GOOGLE_MAP_API_KEY}&callback=initMap&libraries=marker&v=weekly`;
               script.async = true;
-              script.defer = true;
+              script.defer = true; // defer 추가
               script.onerror = () => {
                   console.error('Google Maps 스크립트를 로드하지 못했습니다.');
                   const mapTextElement = document.querySelector('.map-placeholder .map-text');
@@ -58,6 +58,7 @@
                   const mapElement = document.getElementById('google-map');
                   if(mapElement) mapElement.style.display = 'none';
               };
+              // document.head 대신 document.body에 추가해도 비동기 로드에는 문제 없음
               document.body.appendChild(script);
           } else {
               console.error('구글맵 API 키가 없습니다. config.js 또는 window.GOOGLE_MAP_API_KEY 설정을 확인하세요.');
@@ -70,43 +71,61 @@
               if(mapElement) mapElement.style.display = 'none';
           }
       }
-      // result.js 로드 후 실행되도록 defer 처리되었으므로 바로 호출 가능
-      loadGoogleMapsScript();
-      
-      // 내 일정으로 담기 버튼 이벤트 핸들러
-      document.getElementById('save-to-my-plan').addEventListener('click', function() {
-          // 현재 표시된 일정 데이터 가져오기
-          const itineraryData = window.currentItineraryData; // 이 변수는 result.js에서 데이터를 저장해야 함
-          
-          // 로컬 스토리지에 저장 또는 서버로 전송하는 로직
-          if (itineraryData) {
-              try {
-                  // 로컬 스토리지에 저장 예시
-                  const savedPlans = JSON.parse(localStorage.getItem('myPlans') || '[]');
-                  savedPlans.push({
-                      id: Date.now(), // 고유 ID 생성
-                      date: new Date().toISOString(),
-                      itinerary: itineraryData
-                  });
-                  localStorage.setItem('myPlans', JSON.stringify(savedPlans));
-                  
-                  // 성공 메시지 표시
-                  alert('일정이 성공적으로 저장되었습니다!');
-                  
-                  // 내 일정 페이지로 이동 (선택적)
-                  // window.location.href = './my-plans.html';
-              } catch (error) {
-                  console.error('일정 저장 중 오류가 발생했습니다:', error);
-                  alert('일정 저장 중 오류가 발생했습니다. 다시 시도해주세요.');
-              }
+
+      // DOMContentLoaded 이후 실행되도록 보장
+      document.addEventListener('DOMContentLoaded', () => {
+          loadGoogleMapsScript();
+
+          // 내 일정으로 담기 버튼 이벤트 핸들러
+          const saveButton = document.getElementById('save-to-my-plan');
+          if (saveButton) {
+              saveButton.addEventListener('click', function() {
+                  // result.js에서 planData 변수를 전역으로 접근 가능하게 하거나,
+                  // 데이터를 가져오는 함수를 호출해야 합니다.
+                  // 여기서는 planData가 전역 변수라고 가정합니다.
+                  if (typeof planData !== 'undefined' && planData) {
+                      try {
+                          // 선택적으로 사용자 선택 정보도 함께 저장
+                          const userSelections = {
+                              cities: JSON.parse(localStorage.getItem('selectedCities') || '[]'),
+                              dateRange: localStorage.getItem('selectedDateRange') || '',
+                              themes: JSON.parse(localStorage.getItem('selectedThemes') || '[]'),
+                              style: localStorage.getItem('selectedStyle') || ''
+                          };
+
+                          const dataToSave = {
+                              ...planData, // AI 추천 일정 데이터
+                              selections: userSelections // 사용자 선택 데이터
+                          };
+
+                          // localStorage에 'aiRecommendedPlan' 키로 저장
+                          localStorage.setItem('aiRecommendedPlan', JSON.stringify(dataToSave));
+
+                          // 성공 메시지 표시
+                          alert('AI 추천 일정이 내 일정에 반영되었습니다!');
+
+                          // schedule.html 페이지로 이동
+                          window.location.href = './schedule.html';
+
+                      } catch (error) {
+                          console.error('일정 저장 중 오류가 발생했습니다:', error);
+                          alert('일정 저장 중 오류가 발생했습니다. 다시 시도해주세요.');
+                      }
+                  } else {
+                      alert('저장할 일정 데이터가 없습니다. AI 추천을 먼저 받아주세요.');
+                      console.warn('planData is not defined or null. Make sure it is globally accessible from result.js');
+                  }
+              });
           } else {
-              alert('저장할 일정 데이터가 없습니다.');
+              console.error("ID가 'save-to-my-plan'인 버튼을 찾을 수 없습니다.");
+          }
+
+          // 공통 레이아웃 적용
+          if (typeof applyCommonLayout === 'function') {
+              applyCommonLayout();
           }
       });
     </script>
     <script src="js/layout.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', applyCommonLayout);
-    </script>
     </body>
 </html>
