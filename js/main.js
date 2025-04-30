@@ -1,6 +1,21 @@
-// 사용자 이름 표시
-const username = "인봉";
-document.getElementById("username").innerText = username;
+// 세션 체크 및 사용자 인증 확인
+function checkAuth() {
+    const currentUser = sessionStorage.getItem('currentUser');
+    if (!currentUser) {
+        window.location.href = 'login.html';
+        return;
+    }
+    return currentUser;
+}
+
+// 페이지 초기화
+document.addEventListener('DOMContentLoaded', () => {
+    const nickname = checkAuth();
+    console.log(nickname);
+    if (nickname) {
+        document.getElementById("username").innerText = nickname;
+    }
+});
 
 // 🔹 상단 여행지 카드 슬라이드 드래그
 const slider = document.querySelector(".card-list-wrapper");

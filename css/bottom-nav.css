@@ -12,6 +12,12 @@
   transform: translateX(-50%);
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
+  transition: transform 0.2s ease-out;
+  z-index: 1000;
+}
+
+.bottom-nav.hidden {
+  transform: translate(-50%, 100%);
 }
 
 .bottom-nav button {
@@ -20,4 +26,21 @@
   color: white;
   font-size: 20px;
   cursor: pointer;
+}
+
+.swipe-indicator {
+  position: fixed;
+  bottom: 56px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 25%;
+  height: 0.5%;
+  background-color: #5e9dee;
+  border-radius: 4px;
+  z-index: 1000;
+  transition: transform 0.2s ease-out;
+}
+
+.bottom-nav.hidden + .swipe-indicator {
+  transform: translate(-50%, 56px);
 }
