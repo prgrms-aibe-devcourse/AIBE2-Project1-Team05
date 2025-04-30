@@ -82,6 +82,7 @@ async function fetchImageFromGoogleSearch(query) {
         return null;
     }
 }
+
 // ============================================================
 // ===== Google Custom Search API 호출 함수 끝 ===============
 // ============================================================
