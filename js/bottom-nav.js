@@ -17,11 +17,10 @@ function initBottomNav() {
   let currentY = 0;
   let isHidden = false;
 
-  // 스크롤 위치 체크
+  // 스크롤 위치 체크 (맨 하단 도달 시 bottom-nav 보이기)
   function checkScrollPosition() {
-    const isAtBottom = (window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight;
-    
-    if (isAtBottom) {
+    const isAtBottom = (window.innerHeight + window.scrollY) >= document.body.scrollHeight - 2;
+    if (isAtBottom && isHidden) {
       bottomNav.classList.remove('hidden');
       isHidden = false;
     }
@@ -51,12 +50,14 @@ function initBottomNav() {
   }, { passive: true });
 
   // 스와이프 힌트 영역 클릭 이벤트
-  indicator.addEventListener('click', () => {
-    if (isHidden) {
-      bottomNav.classList.remove('hidden');
-      isHidden = false;
-    }
-  });
+  if (indicator) {
+    indicator.addEventListener('click', () => {
+      if (isHidden) {
+        bottomNav.classList.remove('hidden');
+        isHidden = false;
+      }
+    });
+  }
 
   // 스크롤 이벤트
   window.addEventListener('scroll', checkScrollPosition, { passive: true });
