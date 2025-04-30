@@ -4,35 +4,60 @@
 const diaryList = [
   {
     id: "101",
-    title: "도쿄 벚꽃 여행",
-    period: "2025.04.26 ~ 2025.05.07",
-    route: "김포공항 → 도쿄공항 → 숙소 → 디즈니랜드 → 유니버설",
+    title: "도쿄 여행",
+    period: "2025.04.28 ~ 2025.04.29",
+    route: "나리타 국제공항 → 아사쿠사 → 아사쿠사 규카츠",
     diaryText: "벚꽃이 정말 예뻤다! 다시 가고 싶다.",
     photos: [
-      "./assets/images/seoul.jpg",
-      "./assets/images/vietnam.jpg",
-      "./assets/images/seoul.jpg"
+      "./assets/images/tokyo1.jpg",
+      "./assets/images/tokyo2.jpg",
+      "./assets/images/tokyo3.jpg"
     ]
   },
   {
     id: "102",
-    title: "오사카 먹방 투어",
+    title: "하와이 가족 여행",
     period: "2025.05.10 ~ 2025.05.14",
-    route: "오사카성 → 도톤보리 → 유니버설 스튜디오",
-    diaryText: "오사카에서 먹은 타코야키는 잊지 못할 맛이었다.",
+    route: "호놀룰루 공항 → 와이키키 해변 → 다이아몬드 헤드 → 알라모아나 쇼핑센터",
+    diaryText: "하와이의 햇살과 바다는 정말 최고였다. 가족들과의 소중한 시간이었어.",
     photos: [
-      "./assets/images/vietnam.jpg",
-      "./assets/images/seoul.jpg",
-      "./assets/images/vietnam.jpg"
+      "./assets/images/hawaii1.jpg",
+      "./assets/images/hawaii2.jpg",
+      "./assets/images/hawaii3.jpg"
     ]
-  }
+  }  
 ];
+let currentSlide = 0;
+
+function showSlide(index) {
+  const slides = document.querySelectorAll(".slide-photo");
+  if (!slides.length) return;
+
+  slides.forEach((slide) => slide.classList.remove("active"));
+  slides[index].classList.add("active");
+  currentSlide = index;
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const gridIcon = document.querySelector(".fa-th");
   const calendarIcon = document.querySelector(".fa-calendar-alt");
   const galleryTab = document.querySelector(".gallery-tab");
   const calendarTab = document.querySelector(".calendar-tab");
+
+  document.querySelector(".prev-btn")?.addEventListener("click", () => {
+    const slides = document.querySelectorAll(".slide-photo");
+    if (slides.length === 0) return;
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+  });
+  
+  document.querySelector(".next-btn")?.addEventListener("click", () => {
+    const slides = document.querySelectorAll(".slide-photo");
+    if (slides.length === 0) return;
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  });
+  
 
   gridIcon.addEventListener("click", () => {
     galleryTab.style.display = "grid";
@@ -129,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
     card.addEventListener("click", () => {
-      window.location.href = `plan-detail.html?planId=${plan.id}`;
+      window.location.href = `schedule.html`;
     });
     calendarGrid.appendChild(card);
   });
