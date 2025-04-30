@@ -2,26 +2,22 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #1e2734; /* Planite 배경색 */
-    font-family: 'Inter', sans-serif; /* Pretendard 대신 Inter 사용 */
-    color: #e3e6f3; /* Planite 기본 텍스트 색상 */
-    display: flex; /* 수직 중앙 정렬을 위해 flex 사용 */
-    justify-content: center; /* 수평 중앙 정렬 */
-    align-items: flex-start; /* 위쪽 정렬 (스크롤 고려) */
-    min-height: 100vh; /* 최소 높이 */
-    user-select: none; /* 텍스트 선택 방지 */
+    background-color: #1e2734;
+    font-family: 'Inter', sans-serif;
+    color: #e3e6f3;
+    min-height: 100vh;
+    user-select: none;
 }
 
 .container {
     width: 100%;
-    max-width: 390px; /* Planite 컨테이너 너비 */
-    min-height: 100vh; /* 컨테이너 최소 높이 */
+    max-width: 430px; /* main.css와 동일한 너비로 수정 */
+    min-height: 100vh;
+    margin: 0 auto; /* 중앙 정렬 */
     padding: 20px;
-    padding-bottom: 76px; /* 하단 네비게이션 높이(56px) + 여유 공간(20px) */
-    box-sizing: border-box; /* 패딩 포함 너비 계산 */
-    position: relative;
-    overflow-x: hidden; /* 좌우 스크롤 방지 (애니메이션 적용 시) */
-    background-color: #1e2734; /* 컨테이너 배경색 명시 */
+    padding-bottom: 76px;
+    box-sizing: border-box;
+    background-color: #1e2734;
 }
 
 /* 애니메이션 키프레임 정의 */
@@ -266,24 +262,17 @@ body {
 /* 하단 네비게이션 */
 .bottom-nav {
     width: 100%;
-    max-width: 390px; /* 컨테이너 너비와 동일하게 */
-    background-color: #5e9dee; /* 네비게이션 배경색 */
-    height: 56px; /* 네비게이션 높이 */
-    display: flex;
-    justify-content: space-around; /* 아이템 간격 균등 분배 */
-    align-items: center; /* 아이템 세로 중앙 정렬 */
-    position: fixed; /* 화면 하단에 고정 */
+    max-width: 430px; /* 컨테이너와 동일한 너비 */
+    height: 56px;
+    background-color: #5e9dee;
+    position: fixed;
     bottom: 0;
-    left: 50%; /* 중앙 정렬 위해 */
-    transform: translateX(-50%); /* 중앙 정렬 */
-    border-top-left-radius: 12px; /* 위쪽 모서리 둥글게 */
-    border-top-right-radius: 12px;
-    box-sizing: border-box; /* 패딩/테두리 포함 크기 계산 */
-    z-index: 1000; /* 다른 요소 위에 표시 */
-    /* 애니메이션 적용 */
-    animation: fadeInUp 0.5s 0.8s ease-out forwards; /* 다른 요소 로딩 후 나타나도록 지연 */
-    opacity: 0; /* 애니메이션 시작 전 숨김 */
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.1); /* 상단 그림자 */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
 }
 
 .bottom-nav button {
@@ -317,4 +306,28 @@ body {
 .bottom-nav i {
      /* 아이콘 클릭 시 버튼 이벤트가 발생하도록 */
      pointer-events: none;
+}
+
+/* 미디어 쿼리 추가 */
+@media screen and (max-width: 430px) {
+    .container {
+        width: 100%;
+        padding: 16px;
+    }
+
+    .bottom-nav {
+        width: 100%;
+        border-radius: 0;
+    }
+}
+
+@media screen and (min-width: 431px) {
+    .container {
+        border-radius: 0;
+    }
+
+    .bottom-nav {
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
 }
