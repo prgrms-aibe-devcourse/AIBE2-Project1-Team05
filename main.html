@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/bottom-nav.css" />
+    <style>
+      body {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      body.loaded {
+        opacity: 1;
+      }
+    </style>
   </head>
   <body>
     <div class="wrapper">
@@ -16,7 +25,7 @@
         </div>
         <div class="welcome">
           <h2>
-            <span class="highlight" id="username">인봉</span>님, 환영합니다!
+            <span class="highlight" id="username"></span> 님, 환영합니다!
           </h2>
           <p>같이 새 일정을 만들어 볼까요?</p>
         </div>
@@ -61,7 +70,11 @@
     <script src="js/layout.js"></script>
 
     <script>
-      document.addEventListener("DOMContentLoaded", applyCommonLayout);
+      document.addEventListener("DOMContentLoaded", () => {
+        applyCommonLayout();
+        // 페이지 로드 완료 시 콘텐츠 표시
+        document.body.classList.add('loaded');
+      });
     </script>
   </body>
 </html>
