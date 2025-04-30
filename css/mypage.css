@@ -391,3 +391,168 @@ textarea {
   border: none;
   cursor: pointer;
 }
+/* 새 다이어리 모달 */
+#newDiaryModal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+#newDiaryModal.show {
+  display: flex;
+}
+
+/* 기존 diary-content 스타일 재활용 */
+#newDiaryModal .diary-content {
+  background: #e4e7f2;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 20px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 공통 닫기 버튼 스타일 */
+#newDiaryModal .close-new-diary {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #202b3b;
+  z-index: 10;
+}
+
+/* 새 다이어리 모달 */
+#newDiaryModal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#newDiaryModal.show {
+  display: flex;
+}
+
+/* 다이어리 작성용 콘텐츠 박스 */
+#newDiaryModal .diary-content {
+  background: #e4e7f2;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 20px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* 닫기 버튼 */
+#newDiaryModal .close-diary {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #202b3b;
+}
+
+/* 공통 입력 필드 스타일 */
+#newDiaryModal input[type="text"],
+#newDiaryModal input[type="date"],
+#newDiaryModal textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: none;
+  background: #f9fafc;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+}
+
+/* 날짜 입력 박스 */
+#newDiaryModal .date-group {
+  display: flex;
+  gap: 10px;
+}
+
+/* 라벨 */
+#newDiaryModal label {
+  font-weight: bold;
+  font-size: 13px;
+}
+
+/* 파일 선택 버튼 */
+#newDiaryModal input[type="file"] {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: none;
+  background: #ffffff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+/* 저장 버튼 */
+#newDiaryModal #saveNewDiary {
+  padding: 10px;
+  background-color: #0245a3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#newDiaryModal #saveNewDiary:hover {
+  background-color: #01347c;
+}
+/* 파일 업로드 버튼 감싸는 컨테이너 */
+#newDiaryModal .file-upload-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: block; /* inline-block → block으로 변경 */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#newDiaryModal .file-upload-label {
+  display: block;  /* inline-block → block으로 변경 */
+  width: 100%;
+  background-color: #ffffff;
+  color: #333;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+#newDiaryModal input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}

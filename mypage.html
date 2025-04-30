@@ -6,7 +6,10 @@
     <title>프로필 페이지</title>
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/mypage.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
   </head>
 
   <body>
@@ -16,20 +19,56 @@
         <img src="./assets/images/inbong.png" alt="프로필 이미지" />
         <div>
           <div class="nickname">인봉</div>
-          <div class="description">안녕하세요 인봉입니다! 저는 여행을 좋아합니다!</div>
+          <div class="description">
+            안녕하세요 인봉입니다! 저는 여행을 좋아합니다!
+          </div>
         </div>
       </div>
 
       <!-- 아이콘 탭 (그리드/일정 전환) -->
       <div class="profile-tabs">
-        <i class="fas fa-th active"></i> 
-        <i class="fas fa-calendar-alt"></i>          
+        <i class="fas fa-th active"></i>
+        <i class="fas fa-calendar-alt"></i>
       </div>
 
       <!-- 갤러리 탭 -->
       <div class="gallery-tab">
         <div class="photo-grid">
           <!-- 여기에 JS로 gallery-photo 자동 삽입됨 -->
+        </div>
+      </div>
+
+      <!-- 새 다이어리 작성 모달 -->
+      <div class="diary-modal" id="newDiaryModal">
+        <div class="diary-content">
+          <span class="close-new-diary" id="closeNewDiary">&times;</span>
+          <h2>새 다이어리 작성</h2>
+
+          <input type="text" id="newTitle" placeholder="여행 제목" />
+
+          <div class="date-group">
+            <input type="date" id="newStartDate" />
+            <span>~</span>
+            <input type="date" id="newEndDate" />
+          </div>
+
+          <input
+            type="text"
+            id="newRoute"
+            placeholder="여행 경로 (예: 김포공항 → 도쿄공항)"
+          />
+          <div class="file-upload-wrapper">
+            <label for="newPhotos" class="file-upload-label">사진 선택</label>
+            <input type="file" id="newPhotos" multiple />
+          </div>
+          
+
+          <textarea
+            id="newDiaryText"
+            placeholder="여행 일기를 작성해보세요..."
+          ></textarea>
+
+          <button id="saveNewDiary">저장</button>
         </div>
       </div>
 
@@ -56,18 +95,22 @@
 
           <!-- 여행 일기 작성 -->
           <div class="diary-textarea-wrapper">
-            <textarea id="diaryText" readonly placeholder="여행 일기를 작성해보세요..."></textarea>
+            <textarea
+              id="diaryText"
+              readonly
+              placeholder="여행 일기를 작성해보세요..."
+            ></textarea>
             <div class="diary-actions">
               <button id="editBtn">수정</button>
-              <button id="cancelBtn" style="display: none;">취소</button>
-              <button id="saveBtn" style="display: none;">저장</button>
+              <button id="cancelBtn" style="display: none">취소</button>
+              <button id="saveBtn" style="display: none">저장</button>
             </div>
           </div>
         </div>
       </div>
 
       <!-- 일정 탭 -->
-      <div class="calendar-tab" style="display: none;">
+      <div class="calendar-tab" style="display: none">
         <div class="calendar-grid">
           <!-- JS로 일정 카드(plan-card) 자동 삽입됨 -->
         </div>

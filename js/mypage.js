@@ -88,10 +88,24 @@ document.addEventListener("DOMContentLoaded", () => {
   addButton.className = "add-diary-tile";
   addButton.innerHTML = "<span>+</span>";
   addButton.addEventListener("click", () => {
-    alert("새 다이어리 작성 화면으로 이동 (또는 모달 표시)");
-    // window.location.href = 'new-diary.html';
+    document.getElementById("newDiaryModal").classList.add("show");
   });
   galleryContainer.appendChild(addButton);
+
+  const newDiaryModal = document.getElementById("newDiaryModal");
+const closeNewDiary = document.getElementById("closeNewDiary");
+
+closeNewDiary.addEventListener("click", () => {
+  newDiaryModal.classList.remove("show");
+});
+
+newDiaryModal.addEventListener("click", (e) => {
+  if (e.target === newDiaryModal) {
+    newDiaryModal.classList.remove("show");
+  }
+});
+
+  
 
   const diaryModal = document.getElementById("diaryModal");
   const closeDiary = document.querySelector(".close-diary");
@@ -205,3 +219,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 100); // 약간의 딜레이를 줘서 더 부드럽게
   }
 });
+
+

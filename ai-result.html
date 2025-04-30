@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>여행 일정 추천 (Planite 스타일)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/result.css">
+    <link rel="stylesheet" href="./css/save-plan.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="wrapper"></div>
+    <div class="container">
+        <header class="app-header">
+            <img id="header-image" src="https://placehold.co/80x80" alt="대표 이미지" class="header-image">
+            <h1 id="header-title"></h1>
+        </header>
+
+        <section class="map-section">
+            <div class="map-placeholder">
+                <span class="map-text">📍 지도 기반 추천 장소 표시</span>
+                <div id="google-map"></div>
+            </div>
+        </section>
+
+        <nav class="day-tabs" id="day-tabs"></nav>
+        <main class="itinerary-content" id="itinerary-content"></main>
+
+        <div class="save-button-container">
+            <button id="save-to-my-plan" class="save-to-my-plan">
+                <i class="fas fa-calendar-plus"></i> 내 일정으로 담기
+            </button>
+        </div>
+    </div>
+
+
+    <script src="./js/config.js"></script>
+    <script src="./js/result.js" defer></script>
+    <script>
+      // Google Maps 스크립트 로드 함수
+      function loadGoogleMapsScript() {
+          if (typeof window.GOOGLE_MAP_API_KEY === 'string' && window.GOOGLE_MAP_API_KEY) {
+              const script = document.createElement('script');
+              // 콜백 함수 이름 'initMap' 확인
+              script.src = `https://maps.googleapis.com/maps/api/js?key=${window.GOOGLE_MAP_API_KEY}&callback=initMap&libraries=marker&v=weekly`;
+              script.async = true;
+              script.defer = true; // defer 추가
+              script.onerror = () => {
+                  console.error('Google Maps 스크립트를 로드하지 못했습니다.');
+                  const mapTextElement = document.querySelector('.map-placeholder .map-text');
+                  if (mapTextElement) {
+                      mapTextElement.textContent = '지도를 로드하는 중 오류가 발생했습니다.';
+                      mapTextElement.style.display = 'block';
+                  }
+                  const mapElement = document.getElementById('google-map');
+                  if(mapElement) mapElement.style.display = 'none';
+              };
+              // document.head 대신 document.body에 추가해도 비동기 로드에는 문제 없음
+              document.body.appendChild(script);
+          } else {
+              console.error('구글맵 API 키가 없습니다. config.js 또는 window.GOOGLE_MAP_API_KEY 설정을 확인하세요.');
+              const mapTextElement = document.querySelector('.map-placeholder .map-text');
+              if (mapTextElement) {
+                  mapTextElement.textContent = '지도를 표시할 수 없습니다. (API 설정 오류)';
+                  mapTextElement.style.display = 'block';
+              }
+              const mapElement = document.getElementById('google-map');
+              if(mapElement) mapElement.style.display = 'none';
+          }
+      }
+
+      // DOMContentLoaded 이후 실행되도록 보장
+      document.addEventListener('DOMContentLoaded', () => {
+          loadGoogleMapsScript();
+
+          // 내 일정으로 담기 버튼 이벤트 핸들러
+          const saveButton = document.getElementById('save-to-my-plan');
+          if (saveButton) {
+              saveButton.addEventListener('click', function() {
+                  // result.js에서 planData 변수를 전역으로 접근 가능하게 하거나,
+                  // 데이터를 가져오는 함수를 호출해야 합니다.
+                  // 여기서는 planData가 전역 변수라고 가정합니다.
+                  if (typeof planData !== 'undefined' && planData) {
+                      try {
+                          // 선택적으로 사용자 선택 정보도 함께 저장
+                          const userSelections = {
+                              cities: JSON.parse(localStorage.getItem('selectedCities') || '[]'),
+                              dateRange: localStorage.getItem('selectedDateRange') || '',
+                              themes: JSON.parse(localStorage.getItem('selectedThemes') || '[]'),
+                              style: localStorage.getItem('selectedStyle') || ''
+                          };
+
+                          const dataToSave = {
+                              ...planData, // AI 추천 일정 데이터
+                              selections: userSelections // 사용자 선택 데이터
+                          };
+
+                          // localStorage에 'aiRecommendedPlan' 키로 저장
+                          localStorage.setItem('aiRecommendedPlan', JSON.stringify(dataToSave));
+
+                          // 성공 메시지 표시
+                          alert('AI 추천 일정이 내 일정에 반영되었습니다!');
+
+                          // schedule.html 페이지로 이동
+                          window.location.href = './schedule.html';
+
+                      } catch (error) {
+                          console.error('일정 저장 중 오류가 발생했습니다:', error);
+                          alert('일정 저장 중 오류가 발생했습니다. 다시 시도해주세요.');
+                      }
+                  } else {
+                      alert('저장할 일정 데이터가 없습니다. AI 추천을 먼저 받아주세요.');
+                      console.warn('planData is not defined or null. Make sure it is globally accessible from result.js');
+                  }
+              });
+          } else {
+              console.error("ID가 'save-to-my-plan'인 버튼을 찾을 수 없습니다.");
+          }
+
+          // 공통 레이아웃 적용
+          if (typeof applyCommonLayout === 'function') {
+              applyCommonLayout();
+          }
+      });
+    </script>
+    <script src="js/layout.js"></script>
+    </body>
+</html>
