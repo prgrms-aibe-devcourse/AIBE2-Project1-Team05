@@ -1,9 +1,63 @@
-// 탭 전환 (갤러리/일정)
+// mypage.js 전체
+
+// 예시 다이어리 데이터
+const diaryList = [
+  {
+    id: "101",
+    title: "도쿄 여행",
+    period: "2025.04.28 ~ 2025.04.29",
+    route: "나리타 국제공항 → 아사쿠사 → 아사쿠사 규카츠",
+    diaryText: "벚꽃이 정말 예뻤다! 다시 가고 싶다.",
+    photos: [
+      "./assets/images/tokyo1.jpg",
+      "./assets/images/tokyo2.jpg",
+      "./assets/images/tokyo3.jpg"
+    ]
+  },
+  {
+    id: "102",
+    title: "하와이 가족 여행",
+    period: "2025.05.10 ~ 2025.05.14",
+    route: "호놀룰루 공항 → 와이키키 해변 → 다이아몬드 헤드 → 알라모아나 쇼핑센터",
+    diaryText: "하와이의 햇살과 바다는 정말 최고였다. 가족들과의 소중한 시간이었어.",
+    photos: [
+      "./assets/images/hawaii1.jpg",
+      "./assets/images/hawaii2.jpg",
+      "./assets/images/hawaii3.jpg"
+    ]
+  }  
+];
+let currentSlide = 0;
+
+function showSlide(index) {
+  const slides = document.querySelectorAll(".slide-photo");
+  if (!slides.length) return;
+
+  slides.forEach((slide) => slide.classList.remove("active"));
+  slides[index].classList.add("active");
+  currentSlide = index;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const gridIcon = document.querySelector(".fa-th");
   const calendarIcon = document.querySelector(".fa-calendar-alt");
   const galleryTab = document.querySelector(".gallery-tab");
   const calendarTab = document.querySelector(".calendar-tab");
+
+  document.querySelector(".prev-btn")?.addEventListener("click", () => {
+    const slides = document.querySelectorAll(".slide-photo");
+    if (slides.length === 0) return;
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+  });
+  
+  document.querySelector(".next-btn")?.addEventListener("click", () => {
+    const slides = document.querySelectorAll(".slide-photo");
+    if (slides.length === 0) return;
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  });
+  
 
   gridIcon.addEventListener("click", () => {
     galleryTab.style.display = "grid";
@@ -19,76 +73,110 @@ document.addEventListener("DOMContentLoaded", () => {
     calendarIcon.classList.add("active");
   });
 
-  // more 메뉴 토글
-  const moreBtn = document.querySelector(".more-btn");
-  const moreMenu = document.querySelector(".more-menu");
-
-  moreBtn?.addEventListener("click", (e) => {
-    e.stopPropagation();
-    moreMenu.style.display =
-      moreMenu.style.display === "block" ? "none" : "block";
+  const galleryContainer = document.querySelector(".photo-grid");
+  diaryList.forEach((diary) => {
+    const img = document.createElement("img");
+    img.src = diary.photos[0];
+    img.alt = diary.title;
+    img.className = "gallery-photo";
+    img.dataset.diaryId = diary.id;
+    galleryContainer.appendChild(img);
   });
 
-  window.addEventListener("click", () => {
-    moreMenu.style.display = "none";
+  // ➕ 다이어리 추가 버튼
+  const addButton = document.createElement("div");
+  addButton.className = "add-diary-tile";
+  addButton.innerHTML = "<span>+</span>";
+  addButton.addEventListener("click", () => {
+    alert("새 다이어리 작성 화면으로 이동 (또는 모달 표시)");
+    // window.location.href = 'new-diary.html';
   });
+  galleryContainer.appendChild(addButton);
 
-  // 갤러리 다이어리 모달 슬라이드
-  const photos = document.querySelectorAll(".gallery-photo");
   const diaryModal = document.getElementById("diaryModal");
   const closeDiary = document.querySelector(".close-diary");
-  const slides = document.querySelectorAll(".slide-photo");
-  const prevBtn = document.querySelector(".prev-btn");
-  const nextBtn = document.querySelector(".next-btn");
-
-  let currentSlide = 0;
-
-  function showSlide(index) {
-    slides.forEach((slide) => slide.classList.remove("active"));
-    slides[index].classList.add("active");
-    currentSlide = index;
-  }
-
-  photos.forEach((photo) => {
-    photo.addEventListener("click", () => {
-      diaryModal.classList.add("show");
-    });
+  galleryContainer.addEventListener("click", (e) => {
+    if (e.target.classList.contains("gallery-photo")) {
+      const diaryId = e.target.dataset.diaryId;
+      const selected = diaryList.find(d => d.id === diaryId);
+      if (selected) openDiaryModal(selected);
+    }
   });
 
-  closeDiary?.addEventListener("click", () => {
+  closeDiary.addEventListener("click", () => {
     diaryModal.classList.remove("show");
   });
 
-  prevBtn?.addEventListener("click", () => {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
+  diaryModal.addEventListener("click", (e) => {
+    if (e.target === diaryModal) {
+      diaryModal.classList.remove("show");
+    }
   });
 
-  nextBtn?.addEventListener("click", () => {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
+  function openDiaryModal(data) {
+    document.querySelector(".diary-title").textContent = data.title;
+    document.querySelector(".diary-period").textContent = data.period;
+    document.querySelector(".route").textContent = data.route;
+
+    const diaryText = document.getElementById("diaryText");
+    diaryText.value = data.diaryText;
+    originalValue = data.diaryText;
+
+    const photoSlider = document.querySelector(".photo-slider");
+    const controls = document.querySelector(".slide-controls");
+    photoSlider.innerHTML = "";
+    data.photos.forEach((url, i) => {
+      const img = document.createElement("img");
+      img.src = url;
+      img.className = "slide-photo";
+      if (i === 0) img.classList.add("active");
+      photoSlider.appendChild(img);
+    });
+    photoSlider.appendChild(controls);
+    diaryModal.classList.add("show");
+  }
+
+  const calendarGrid = document.querySelector(".calendar-grid");
+  diaryList.forEach(plan => {
+    const card = document.createElement("div");
+    card.className = "plan-card";
+    card.dataset.planId = plan.id;
+    card.innerHTML = `
+      <img src="${plan.photos[0]}" alt="아이콘" />
+      <div>
+        <strong>${plan.title}</strong>
+        <p>${plan.period}</p>
+      </div>
+      <i class="fas fa-ellipsis-h more-btn"></i>
+      <div class="more-menu" style="display: none">
+        <button class="edit-btn">수정</button>
+        <button class="delete-btn">삭제</button>
+      </div>
+    `;
+    card.addEventListener("click", () => {
+      window.location.href = `schedule.html`;
+    });
+    calendarGrid.appendChild(card);
   });
 
-  // 다이어리 편집/저장/취소
+  // ✏️ 수정/저장/취소 기능
   const diaryText = document.getElementById("diaryText");
   const editBtn = document.getElementById("editBtn");
   const cancelBtn = document.getElementById("cancelBtn");
   const saveBtn = document.getElementById("saveBtn");
 
-  let originalValue = diaryText?.value;
-  let isEditing = false;
+  let originalValue = "";
 
   editBtn?.addEventListener("click", () => {
-    isEditing = true;
     diaryText.readOnly = false;
     diaryText.focus();
+    originalValue = diaryText.value;
     editBtn.style.display = "none";
     cancelBtn.style.display = "inline-block";
-    saveBtn.style.display = "none";
   });
 
   diaryText?.addEventListener("input", () => {
-    if (isEditing && diaryText.value !== originalValue) {
+    if (diaryText.value !== originalValue) {
       saveBtn.style.display = "inline-block";
     } else {
       saveBtn.style.display = "none";
@@ -96,9 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   saveBtn?.addEventListener("click", () => {
-    originalValue = diaryText.value;
     diaryText.readOnly = true;
-    isEditing = false;
     editBtn.style.display = "inline-block";
     cancelBtn.style.display = "none";
     saveBtn.style.display = "none";
@@ -108,30 +194,14 @@ document.addEventListener("DOMContentLoaded", () => {
   cancelBtn?.addEventListener("click", () => {
     diaryText.value = originalValue;
     diaryText.readOnly = true;
-    isEditing = false;
     editBtn.style.display = "inline-block";
     cancelBtn.style.display = "none";
     saveBtn.style.display = "none";
   });
-
-  const modal = document.getElementById("diaryModal");
-  const openModalBtn = document.getElementById("openModal");
-  const closeModalBtn = document.querySelector(".close-diary");
-
-  // 열기
-  openModalBtn?.addEventListener("click", () => {
-    modal.classList.add("show");
-  });
-
-  // 닫기
-  closeModalBtn?.addEventListener("click", () => {
-    modal.classList.remove("show");
-  });
-
-  // 바깥 클릭시 닫기
-  modal?.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      modal.classList.remove("show");
-    }
-  });
+  const profileHeader = document.querySelector('.profile-header');
+  if (profileHeader) {
+    setTimeout(() => {
+      profileHeader.classList.add('show');
+    }, 100); // 약간의 딜레이를 줘서 더 부드럽게
+  }
 });

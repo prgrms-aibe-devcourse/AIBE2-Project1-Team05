@@ -1,0 +1,320 @@
+/* 기본 스타일 및 Planite 테마 적용 */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #1e2734; /* Planite 배경색 */
+    font-family: 'Inter', sans-serif; /* Pretendard 대신 Inter 사용 */
+    color: #e3e6f3; /* Planite 기본 텍스트 색상 */
+    display: flex; /* 수직 중앙 정렬을 위해 flex 사용 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: flex-start; /* 위쪽 정렬 (스크롤 고려) */
+    min-height: 100vh; /* 최소 높이 */
+    user-select: none; /* 텍스트 선택 방지 */
+}
+
+.container {
+    width: 100%;
+    max-width: 390px; /* Planite 컨테이너 너비 */
+    min-height: 100vh; /* 컨테이너 최소 높이 */
+    padding: 20px;
+    padding-bottom: 76px; /* 하단 네비게이션 높이(56px) + 여유 공간(20px) */
+    box-sizing: border-box; /* 패딩 포함 너비 계산 */
+    position: relative;
+    overflow-x: hidden; /* 좌우 스크롤 방지 (애니메이션 적용 시) */
+    background-color: #1e2734; /* 컨테이너 배경색 명시 */
+}
+
+/* 애니메이션 키프레임 정의 */
+@keyframes fadeIn { /* 부드럽게 나타나는 효과 */
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp { /* 아래에서 위로 올라오며 나타나는 효과 */
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft { /* 왼쪽에서 슬라이드하며 나타나는 효과 */
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* 헤더 */
+.app-header {
+    text-align: center;
+    padding: 20px 0;
+    margin-bottom: 10px;
+    /* 애니메이션 적용 */
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.header-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid #e3e6f3;
+    margin-bottom: 10px;
+    object-fit: cover; /* 이미지 비율 유지하며 채우기 */
+    background-color: #4a5568; /* 이미지 로딩 전 배경 */
+}
+
+.app-header h1 {
+    font-size: 22px; /* 폰트 크기 */
+    margin: 0;
+    line-height: 1.3; /* 줄 간격 */
+    color: #e3e6f3; /* 텍스트 색상 */
+    font-weight: 700; /* 폰트 두께 */
+}
+
+/* 지도 섹션 */
+.map-section {
+    margin-bottom: 20px;
+    /* 애니메이션 적용 */
+    animation: fadeIn 0.8s 0.2s ease-in forwards; /* 0.2초 딜레이 후 나타남 */
+    opacity: 0; /* 애니메이션 시작 전 숨김 */
+}
+
+.map-placeholder {
+    height: 200px; /* 지도 영역 높이 조정 (필요시) */
+    background-color: #2d3748; /* 지도 로딩 전 배경색 */
+    border-radius: 12px; /* 모서리 둥글게 */
+    display: flex; /* 내부 요소 정렬 위해 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    position: relative; /* 내부 절대 위치 요소 기준 */
+    overflow: hidden; /* 내부 요소 넘침 방지 */
+}
+
+/* 지도 로딩 전 안내 텍스트 (JS에서 지도 로딩 후 숨겨야 함) */
+.map-placeholder .map-text {
+    background-color: rgba(0, 0, 0, 0.6); /* 반투명 배경 */
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #e3e6f3;
+    position: absolute; /* 중앙 배치 */
+    z-index: 1;
+    text-align: center;
+}
+
+/* 실제 지도가 들어갈 div */
+#google-map {
+    width: 100%;
+    height: 100%;
+    position: absolute; /* 부모(.map-placeholder) 기준 */
+    top: 0;
+    left: 0;
+    z-index: 0; /* 안내 텍스트 아래 */
+}
+
+/* Day 탭 */
+.day-tabs {
+    display: flex;
+    justify-content: center; /* 탭 중앙 정렬 */
+    margin-bottom: 20px;
+      /* 애니메이션 적용 */
+    animation: fadeInUp 0.6s 0.4s ease-out forwards; /* 0.4초 딜레이 */
+    opacity: 0; /* 애니메이션 시작 전 숨김 */
+    border-bottom: 1px solid #2d3748; /* 탭 아래 구분선 */
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    color: #a0a4b8; /* 비활성 탭 색상 */
+    padding: 10px 25px; /* 탭 패딩 */
+    font-size: 16px; /* 탭 폰트 크기 */
+    cursor: pointer;
+    border-bottom: 3px solid transparent; /* 하단 테두리 기본 투명 */
+    transition: color 0.3s, border-color 0.3s; /* 부드러운 전환 효과 */
+    font-weight: 500;
+    white-space: nowrap; /* 탭 이름 줄바꿈 방지 */
+}
+
+.tab-button.active {
+    color: #5e9dee; /* 활성 탭 색상 */
+    font-weight: bold; /* 활성 탭 굵게 */
+    border-bottom-color: #5e9dee; /* 활성 탭 하단 테두리 색상 */
+}
+
+/* 일정 내용 */
+.itinerary-content {
+    /* 각 아이템에 애니메이션이 개별적으로 적용됨 */
+}
+
+.tab-content {
+    display: none; /* 기본적으로 컨텐츠 숨김 */
+}
+
+.tab-content.active {
+    display: block; /* 활성화된 탭의 컨텐츠만 표시 */
+}
+
+.itinerary-item {
+    display: flex;
+    align-items: flex-start; /* 아이템 상단 정렬 */
+    margin-bottom: 15px; /* 아이템 간 간격 */
+    position: relative; /* 선 위치 기준 */
+    /* 각 아이템에 애니메이션 적용 */
+    animation: slideInLeft 0.5s ease-out forwards;
+    opacity: 0; /* 애니메이션 시작 전 숨김 */
+}
+
+/* 아이템별 애니메이션 지연 (CSS만으로 처리) */
+/* JS로 처리하는 것이 더 유연할 수 있음 */
+.itinerary-item:nth-child(1) { animation-delay: 0.6s; }
+.itinerary-item:nth-child(2) { animation-delay: 0.7s; }
+.itinerary-item:nth-child(3) { animation-delay: 0.8s; }
+.itinerary-item:nth-child(4) { animation-delay: 0.9s; }
+.itinerary-item:nth-child(5) { animation-delay: 1.0s; }
+/* 필요에 따라 더 추가 */
+
+
+.item-number-line {
+    display: flex;
+    flex-direction: column; /* 숫자와 선을 세로 배치 */
+    align-items: center; /* 가로 중앙 정렬 */
+    margin-right: 15px; /* 오른쪽 여백 */
+    position: relative; /* 선 위치 기준 */
+    z-index: 1; /* 카드 위에 오도록 */
+    padding-top: 5px; /* 카드와 높이 맞춤 */
+    min-height: 70px; /* 카드+패딩 고려한 최소 높이 */
+}
+
+.item-number {
+    background-color: #e3e6f3; /* 숫자 배경 (밝은색) */
+    color: #1e2734; /* 숫자 색상 (어두운색) */
+    border-radius: 50%; /* 원형 */
+    width: 24px; /* 크기 */
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 12px; /* 숫자 크기 */
+    flex-shrink: 0; /* 숫자 크기 고정 */
+}
+
+/* 아이템 연결선 (점선 효과) */
+.item-number-line .line {
+    width: 2px; /* 선 두께 */
+    /* background-color: rgba(227, 230, 243, 0.3); */ /* 단색 대신 점선 사용 */
+    flex-grow: 1; /* 가능한 영역 채우기 */
+    margin-top: 5px; /* 숫자와의 간격 */
+    /* 점선 효과 */
+    background-image: linear-gradient(to bottom, rgba(227, 230, 243, 0.5) 60%, transparent 40%);
+    background-size: 2px 8px; /* 점선 간격 조절 */
+    /* min-height: 50px; /* 최소 높이 (flex-grow 로 대체) */
+}
+
+/* 마지막 아이템의 선 숨기기 */
+.itinerary-item:last-child .item-number-line .line {
+   background: none; /* 배경 제거 */
+   /* display: none; */ /* 또는 숨기기 */
+   min-height: 0; /* 최소 높이 제거 */
+}
+
+.item-card {
+    background-color: #2d3748; /* 카드 배경 */
+    color: #e3e6f3; /* 카드 텍스트 */
+    border-radius: 12px; /* 카드 모서리 둥글게 */
+    padding: 15px; /* 카드 내부 여백 */
+    display: flex;
+    align-items: center; /* 내용 세로 중앙 정렬 */
+    flex-grow: 1; /* 가능한 너비 모두 차지 */
+    min-height: 50px; /* 최소 높이 */
+    transition: transform 0.2s ease-in-out; /* 호버 효과 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+}
+
+/* 카드 호버 시 약간 커지는 효과 (선택 사항) */
+.item-card:hover {
+    transform: scale(1.02); /* 약간 확대 */
+}
+
+
+.item-image {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%; /* 원형 이미지 */
+    margin-right: 10px; /* 오른쪽 여백 */
+    object-fit: cover; /* 이미지 비율 유지 */
+    border: 1px solid #4a5568; /* 이미지 테두리 */
+    background-color: #4a5568; /* 이미지 로딩 전 배경 */
+    flex-shrink: 0; /* 이미지 크기 고정 */
+}
+
+.item-card span {
+    font-size: 14px; /* 장소 이름 폰트 크기 */
+    font-weight: 500;
+}
+
+/* 하단 네비게이션 */
+.bottom-nav {
+    width: 100%;
+    max-width: 390px; /* 컨테이너 너비와 동일하게 */
+    background-color: #5e9dee; /* 네비게이션 배경색 */
+    height: 56px; /* 네비게이션 높이 */
+    display: flex;
+    justify-content: space-around; /* 아이템 간격 균등 분배 */
+    align-items: center; /* 아이템 세로 중앙 정렬 */
+    position: fixed; /* 화면 하단에 고정 */
+    bottom: 0;
+    left: 50%; /* 중앙 정렬 위해 */
+    transform: translateX(-50%); /* 중앙 정렬 */
+    border-top-left-radius: 12px; /* 위쪽 모서리 둥글게 */
+    border-top-right-radius: 12px;
+    box-sizing: border-box; /* 패딩/테두리 포함 크기 계산 */
+    z-index: 1000; /* 다른 요소 위에 표시 */
+    /* 애니메이션 적용 */
+    animation: fadeInUp 0.5s 0.8s ease-out forwards; /* 다른 요소 로딩 후 나타나도록 지연 */
+    opacity: 0; /* 애니메이션 시작 전 숨김 */
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1); /* 상단 그림자 */
+}
+
+.bottom-nav button {
+    background: none;
+    border: none;
+    color: white; /* 아이콘/텍스트 색상 */
+    font-size: 22px; /* 아이콘 크기 (Font Awesome 기준) */
+    cursor: pointer;
+    padding: 10px; /* 클릭 영역 확보 */
+    flex-grow: 1; /* 각 버튼이 동일 너비 차지 */
+    display: flex; /* 내부 아이콘/텍스트 정렬 위해 */
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* 버튼 높이 채우기 */
+    transition: background-color 0.2s ease, transform 0.1s ease; /* 부드러운 효과 */
+}
+
+/* 버튼 호버 시 약간 어두운 배경 (선택 사항) */
+.bottom-nav button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+/* 버튼 클릭 시 약간 작아지는 효과 (선택 사항) */
+.bottom-nav button:active {
+    transform: scale(0.92); /* 클릭 시 작아짐 */
+    background-color: rgba(255, 255, 255, 0.15); /* 클릭 시 배경 변경 */
+}
+
+/* Font Awesome 아이콘 스타일 */
+.bottom-nav i {
+     /* 아이콘 클릭 시 버튼 이벤트가 발생하도록 */
+     pointer-events: none;
+}

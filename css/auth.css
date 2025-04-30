@@ -1,0 +1,118 @@
+/* 공통 레이아웃 스타일 */
+body {
+    background-color: #1c2331;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* 로고 관련 스타일 */
+.logo img {
+    width: 150px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.logo-text {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.slogan {
+    font-size: 1rem;
+    color: #cccccc;
+    margin-bottom: 2rem;
+}
+
+/* 폼 컨테이너 스타일 */
+.form-container {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+}
+
+/* 입력 필드 스타일 */
+.nickname-input {
+    width: 100%;
+    padding: 12px 48px 12px 20px;
+    border: none;
+    border-radius: 24px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    box-sizing: border-box;
+}
+
+.nickname-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.nickname-input:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* 버튼 스타일 */
+.start-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: #5e9dee;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.start-button:hover {
+    opacity: 0.9;
+}
+
+/* 링크 스타일 */
+.auth-links {
+    width: 100%;
+    text-align: right;
+    font-size: 0.85rem;
+    color: #cccccc;
+    padding-right: 5px;
+}
+
+.auth-links a {
+    color: #cccccc;
+    text-decoration: none;
+    margin: 0 0.5rem;
+    transition: color 0.3s;
+}
+
+.auth-links a:hover {
+    color: #ffffff;
+}
+
+/* 아이콘 스타일 */
+.arrow-icon {
+    width: 20px;
+    height: 20px;
+} 
