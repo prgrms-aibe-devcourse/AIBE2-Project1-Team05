@@ -161,8 +161,18 @@ body {
     display: flex;
     flex: 1;
     align-items: flex-start;
+    cursor: grab;
   }
   
+  .itinerary-item.sortable-chosen {
+    opacity: 0.85;
+    box-shadow: 0 0 12px rgba(94, 157, 238, 0.6);
+  }
+  
+  .itinerary-item.sortable-ghost {
+    opacity: 0.3;
+  }
+
   .item-image {
     width: 40px;
     height: 40px;

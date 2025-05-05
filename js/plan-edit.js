@@ -4,6 +4,7 @@ let planData = null;
 let map;
 let markers = [];
 let currentPolyline = null;
+let sortable = null;
 
 document.addEventListener("DOMContentLoaded", () => {
   const headerTitle = document.getElementById("header-title");
@@ -86,6 +87,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     addMarkersAndRoute(dayIndex);
+    initSortable(dayIndex);
+  }
+
+  // 🟢 SortableJS 드래그 정렬 초기화
+  function initSortable(dayIndex) {
+    if (sortable) sortable.destroy(); // 기존 인스턴스 제거
+
+    sortable = new Sortable(itineraryContentContainer, {
+      animation: 150,
+      handle: ".item-card",
+      onEnd: (evt) => {
+        const { oldIndex, newIndex } = evt;
+        if (oldIndex !== newIndex) {
+          const movedItem = planData.days[dayIndex].items.splice(oldIndex, 1)[0];
+          planData.days[dayIndex].items.splice(newIndex, 0, movedItem);
+          refreshItemNumbers();
+          addMarkersAndRoute(dayIndex);
+        }
+      }
+    });
   }
 
   // 🟢 일정 추가 버튼
@@ -113,8 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
     planData.startDate = startDateInput.value;
     planData.endDate = endDateInput.value;
 
-    // 저장된 input/textarea 값 반영
-    const dayIndex = document.querySelector(".tab-button.active")?.dataset.dayIndex ?? 0;
+    const dayIndex = parseInt(document.querySelector(".tab-button.active")?.dataset.dayIndex || 0);
     const inputs = itineraryContentContainer.querySelectorAll(".itinerary-item");
     inputs.forEach((div, idx) => {
       planData.days[dayIndex].items[idx].name = div.querySelector(".item-name").value.trim();
@@ -157,12 +177,18 @@ function getCategoryEmoji(category) {
   return "✨";
 }
 
+// 🟢 item-number 번호 새로고침
+function refreshItemNumbers() {
+  document.querySelectorAll('.item-number').forEach((el, idx) => {
+    el.textContent = idx + 1;
+  });
+}
+
 // 🟢 지도
 function initMap() {
   const mapElement = document.getElementById("google-map");
   map = new google.maps.Map(mapElement, { center: { lat: 35.6895, lng: 139.6917 }, zoom: 11 });
   addMarkersAndRoute(0);
-  
 }
 
 function addMarkersAndRoute(dayIndex) {
