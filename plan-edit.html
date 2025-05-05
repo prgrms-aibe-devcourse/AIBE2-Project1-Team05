@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>여행 일정 편집</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/bottom-nav.css" />
+  <link rel="stylesheet" href="css/result.css" />
+  <link rel="stylesheet" href="css/plan-edit.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <div class="container" id="edit-container">
+      
+      <!-- 헤더 -->
+      <header class="app-header">
+        <img id="header-image" src="" alt="대표 이미지" class="header-image" />
+        <h1 id="header-title" contenteditable="true">도쿄 여행</h1>
+        <div class="date-edit">
+          <input type="date" id="start-date" />
+          <span>~</span>
+          <input type="date" id="end-date" />
+        </div>
+      </header>
+
+      <!-- 지도 -->
+      <section class="map-section">
+        <div class="map-placeholder">
+          <div id="google-map"></div>
+        </div>
+      </section>
+
+      <!-- Day 탭 -->
+      <nav class="day-tabs" id="day-tabs"></nav>
+
+      <!-- 일정 추가 버튼 (리스트 위) -->
+      <div class="add-item-container">
+        <button id="add-item-button"><i class="fas fa-plus"></i> 일정 추가</button>
+      </div>
+
+      <!-- 일정 내용 -->
+      <main class="itinerary-content" id="itinerary-content"></main>
+
+      <!-- 저장 버튼 -->
+      <div class="save-button-container">
+        <button id="save-edited-plan">
+          <i class="fas fa-save"></i> 일정 저장
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 스크립트 -->
+  <script src="js/config.js"></script>
+  <script src="js/plan-edit.js" defer></script>
+  <script src="js/layout.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
+  <script>
+    // 공통 레이아웃 적용 (바텀 네비게이션 포함)
+    document.addEventListener("DOMContentLoaded", () => {
+      applyCommonLayout();
+      // 페이지 로드 완료 시 콘텐츠 표시
+      document.body.classList.add("loaded");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,483 @@
+/* 기본 설정 */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #1e2734;
+    font-family: 'Inter', sans-serif;
+    color: #e3e6f3;
+    min-height: 100vh;
+    user-select: none;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 430px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-bottom: 96px;
+    box-sizing: border-box;
+  }
+  
+  /* 헤더 */
+  .app-header {
+    text-align: center;
+    padding: 20px 0;
+    margin-bottom: 15px;
+  }
+  
+  .header-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e3e6f3;
+    margin-bottom: 8px;
+    background-color: #4a5568;
+  }
+  
+  .app-header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+    color: #e3e6f3;
+  }
+  
+  /* 날짜 입력 */
+  .date-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .date-inputs input[type="date"] {
+    background-color: #2d3748;
+    border: none;
+    border-radius: 6px;
+    color: #e3e6f3;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  
+  /* Day 탭 */
+  .day-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  
+  .day-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .tab-button {
+    background: none;
+    border: none;
+    color: #a0a4b8;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+  }
+  
+  .tab-button.active {
+    color: #5e9dee;
+    font-weight: bold;
+    border-bottom-color: #5e9dee;
+  }
+  
+  /* 상단 + 버튼 컨테이너 */
+  .add-item-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+  }
+  
+  .add-item-container button {
+    background-color: #5e9dee;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .add-item-container button:hover {
+    background-color: #4ca3e6;
+  }
+  
+  /* 일정 아이템 */
+  .itinerary-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    background-color: #2d3748;
+    border-radius: 10px;
+    padding: 12px;
+    position: relative;
+  }
+  
+  .item-number-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+  
+  .item-number {
+    background-color: #4a5568;
+    color: #e3e6f3;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+  }
+  
+  .item-number-line .line {
+    width: 2px;
+    flex-grow: 1;
+    background-image: linear-gradient(to bottom, rgba(227,230,243,0.5) 60%, transparent 40%);
+    background-size: 2px 8px;
+    margin-top: 5px;
+  }
+  
+  .itinerary-item:last-child .item-number-line .line {
+    background: none;
+  }
+  
+  .item-card {
+    display: flex;
+    flex: 1;
+    align-items: flex-start;
+    cursor: grab;
+  }
+  
+  .itinerary-item.sortable-chosen {
+    opacity: 0.85;
+    box-shadow: 0 0 12px rgba(94, 157, 238, 0.6);
+  }
+  
+  .itinerary-item.sortable-ghost {
+    opacity: 0.3;
+  }
+
+  .item-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: #4a5568;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .item-info {
+    flex: 1;
+  }
+  
+  .item-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e3e6f3;
+    margin-bottom: 4px;
+  }
+  
+  .item-details {
+    font-size: 12px;
+    color: #a0a4b8;
+    line-height: 1.4;
+  }
+  
+  /* edit-buttons → - 버튼만 */
+  .edit-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-left: 8px;
+  }
+  
+  .edit-buttons button {
+    background-color: #888888;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .edit-buttons button:hover {
+    background-color: #cc3333;
+  }
+  
+  /* 저장 버튼 */
+  .save-button-container {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  #save-edited-plan {
+    background-color: #5e9dee;
+    color: white;
+    padding: 12px 30px;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease;
+  }
+  
+  #save-edited-plan:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* 지도 */
+  .map-section {
+    margin-bottom: 20px;
+  }
+  
+  .map-placeholder {
+    height: 200px;
+    background-color: #2d3748;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  #google-map {
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* 반응형 */
+  @media screen and (max-width: 430px) {
+    .container {
+      padding-bottom: 96px;
+    }
+  }
+  
+  /* 📌 input/textarea 공통 스타일 */
+.item-info input,
+.item-info textarea {
+  width: 100%;
+  background-color: #2d3748;
+  color: #e3e6f3;
+  border: 1px solid #4a5568;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 13px;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.2s ease;
+}
+
+.item-info input::placeholder,
+.item-info textarea::placeholder {
+  color: #a0a4b8;
+  font-size: 12px;
+}
+
+.item-info input:focus,
+.item-info textarea:focus {
+  outline: none;
+  border-color: #5e9dee;
+}
+
+/* 📌 각 input/textarea 간 간격 */
+.item-info input + .item-details,
+.item-details textarea + textarea {
+  margin-top: 6px;
+}
+
+/* 📌 item-info flex column */
+.item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow: hidden;
+}
+
+/* 📌 item-card 내부 정렬 */
+.item-card {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  padding: 12px;
+  gap: 10px;
+  background-color: #2d3748;
+  border-radius: 10px;
+}
+
+/* 📌 이미지 or 아이콘 placeholder */
+.item-image,
+.item-emoji-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: cover;
+  background-color: #4a5568;
+  flex-shrink: 0;
+}
+
+/* 📌 번호 원 */
+.item-number {
+  background-color: #4a5568;
+  color: #e3e6f3;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+/* 📌 번호 카테고리별 색상 */
+.item-number.category-sightseeing { background-color: #8A2BE2; color: white; }
+.item-number.category-shopping { background-color: #FFD700; color: #333; }
+.item-number.category-accommodation { background-color: #2E8B57; color: white; }
+.item-number.category-food { background-color: #C71585; color: white; }
+.item-number.category-transport { background-color: #5e9dee; color: white; }
+.item-number.category-other { background-color: #4a5568; color: #e3e6f3; }
+
+/* 📌 삭제 버튼 */
+.edit-buttons button {
+  background-color: #888888;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.edit-buttons button:hover {
+  background-color: #cc3333;
+}
+
+/* 📌 일정 아이템 전체 */
+.itinerary-item {
+  display: flex;
+  max-width: 100%;
+  overflow: hidden;
+  background-color: #2d3748;
+  border-radius: 12px;
+  padding: 12px;
+  align-items: flex-start;
+}
+
+/* 📌 item-number-line */
+.item-number-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.item-number-line .line {
+  width: 2px;
+  flex-grow: 1;
+  background-image: linear-gradient(to bottom, rgba(227,230,243,0.5) 60%, transparent 40%);
+  background-size: 2px 8px;
+  margin-top: 5px;
+}
+
+.itinerary-item:last-child .item-number-line .line {
+  background: none;
+}
+
+/* 📌 add-item-container 버튼 */
+.add-item-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+.add-item-container button {
+  background-color: #5e9dee;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.add-item-container button:hover {
+  background-color: #4ca3e6;
+}
+
+/* app-header 최상단 개선 */
+.app-header {
+    background-color: #2d3748;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+  }
+  
+  .header-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e3e6f3;
+    margin-bottom: 12px;
+    background-color: #4a5568;
+  }
+  
+  .app-header h1 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #e3e6f3;
+    margin: 0 0 10px 0;
+  }
+  
+  .date-edit {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .date-edit input[type="date"] {
+    background-color: #2d3748;
+    color: #e3e6f3;
+    border: 1px solid #4a5568;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  .date-edit span {
+    color: #e3e6f3;
+    font-size: 14px;
+  }
+  

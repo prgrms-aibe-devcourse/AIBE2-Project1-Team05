@@ -82,6 +82,7 @@ async function fetchImageFromGoogleSearch(query) {
         return null;
     }
 }
+
 // ============================================================
 // ===== Google Custom Search API 호출 함수 끝 ===============
 // ============================================================
@@ -279,13 +280,25 @@ function initMap() {
 function setupSaveButtonListener() {
     const saveButton = document.getElementById('save-to-my-plan');
     if (saveButton) {
-         saveButton.replaceWith(saveButton.cloneNode(true));
-         document.getElementById('save-to-my-plan').addEventListener('click', function() {
-            if (planData) { try { /* 저장 */ } catch (error) { /* 오류 */ } }
-            else { alert('저장할 일정 데이터가 없습니다.'); }
-        });
-    } else { console.error("저장 버튼 못 찾음"); }
-}
+      saveButton.replaceWith(saveButton.cloneNode(true));
+      document.getElementById('save-to-my-plan').addEventListener('click', function() {
+        if (planData) {
+          try {
+            localStorage.setItem('myPlan', JSON.stringify(planData));
+            alert('내 일정에 저장했습니다!');
+            window.location.href = 'plan-edit.html'; // 편집 페이지로 이동
+          } catch (error) {
+            console.error("저장 오류:", error);
+            alert('일정 저장 중 문제가 발생했습니다.');
+          }
+        } else {
+          alert('저장할 일정 데이터가 없습니다.');
+        }
+      });
+    } else {
+      console.error("저장 버튼 못 찾음");
+    }
+  }
 
 // --- 페이지 로드 시 실행되는 메인 로직 (Google Custom Search 연동) ---
 document.addEventListener('DOMContentLoaded', async () => {
