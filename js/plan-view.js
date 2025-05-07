@@ -13,6 +13,7 @@ let headerImageView;
 let headerTitleView;
 let planViewContainer;
 let loadingIndicatorView;
+let mapLoadingTextView; // 지도 로딩 텍스트 요소 참조 추가
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("[PlanView] DOMContentLoaded 시작");
@@ -24,16 +25,18 @@ document.addEventListener('DOMContentLoaded', () => {
     headerTitleView = document.getElementById('header-title-view');
     planViewContainer = document.getElementById('plan-view-container');
     loadingIndicatorView = document.getElementById('loading-indicator-view');
+    // 'map-text' 클래스를 가진 요소를 찾습니다. HTML 구조에 따라 정확한 선택자가 필요할 수 있습니다.
+    // 여기서는 .map-placeholder 내부의 .map-text를 가정합니다.
+    mapLoadingTextView = document.querySelector('.map-placeholder .map-text');
+
 
     const editButton = document.getElementById('edit-this-plan-button');
     const myPageButton = document.getElementById('go-to-mypage-button');
 
     if (editButton) {
         editButton.addEventListener('click', () => {
-            // 수정 버튼 클릭 시, 현재 보고 있는 데이터를 aiGeneratedPlanData로 저장하고 plan-edit.html로 이동
-            // plan-edit.html은 aiGeneratedPlanData를 우선적으로 불러오도록 수정 필요 (또는 키 이름 통일)
             if (planDataView) {
-                localStorage.setItem('aiGeneratedPlanData', JSON.stringify(planDataView)); // plan-edit에서 이 키를 사용
+                localStorage.setItem('aiGeneratedPlanData', JSON.stringify(planDataView));
                 window.location.href = 'plan-edit.html';
             } else {
                 alert('수정할 일정 데이터가 없습니다.');
@@ -63,13 +66,11 @@ function hideLoadingIndicatorView(isError = false, errorMessage = '일정 로드
 }
 
 async function loadAndDisplayPlan() {
-    const storedPlan = localStorage.getItem('editedPlanData'); // plan-edit.js에서 저장한 키
+    const storedPlan = localStorage.getItem('editedPlanData');
 
     if (!storedPlan) {
         console.error("[PlanView] localStorage에 'editedPlanData' 없음.");
         hideLoadingIndicatorView(true, "저장된 일정을 찾을 수 없습니다. 마이페이지에서 다시 선택해주세요.");
-        // 마이페이지나 메인으로 리디렉션 고려
-        // window.location.href = 'mypage.html';
         return;
     }
 
@@ -80,15 +81,12 @@ async function loadAndDisplayPlan() {
         }
         console.log("[PlanView] 불러온 일정 데이터:", planDataView);
 
-        // UI 업데이트
         updateHeaderView();
         createDayTabsView();
-        createItineraryContentView(); // 첫 번째 탭 내용 먼저 렌더링
+        createItineraryContentView();
 
-        // 로딩 인디케이터 숨김
         hideLoadingIndicatorView(false);
 
-        // 지도 초기화 (Google Maps API 스크립트가 로드된 후 실행되도록)
         if (window.google && window.google.maps && window.google.maps.Map) {
             if (!window.mapViewInitialized) initMapView();
         } else {
@@ -125,7 +123,7 @@ function updateHeaderView() {
             const start = new Date(planDataView.startDate);
             const end = new Date(planDataView.endDate);
             if (!isNaN(start.getTime()) && !isNaN(end.getTime())) {
-                const diffTime = Math.abs(end.getTime() - start.getTime()); // getTime() 추가
+                const diffTime = Math.abs(end.getTime() - start.getTime());
                 const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
                 durationText = `${diffDays}박 ${diffDays + 1}일`;
             } else {
@@ -152,7 +150,7 @@ function createDayTabsView() {
         dayTabsContainerView.appendChild(btn);
     });
 
-    if (!dayTabsContainerView.listenerAttached) { // 중복 리스너 방지
+    if (!dayTabsContainerView.listenerAttached) {
         dayTabsContainerView.addEventListener('click', handleTabClickView);
         dayTabsContainerView.listenerAttached = true;
     }
@@ -160,7 +158,7 @@ function createDayTabsView() {
 
 function createItineraryContentView() {
     if (!planDataView || !Array.isArray(planDataView.days)) return;
-    itineraryContentView.innerHTML = ''; // 기존 내용 초기화
+    itineraryContentView.innerHTML = '';
 
     const getCategoryClass = (category) => {
         if (!category) return 'category-default'; const lc = category.toLowerCase();
@@ -195,7 +193,7 @@ function createItineraryContentView() {
 
                 const categoryClass = getCategoryClass(item.category);
                 const categoryHtml = item.category ? `<span class="item-category">${item.category}</span>` : '';
-                const reasonHtml = item.reason ? `<span class="item-reason"><span class="reason-prefix">메모:</span> ${item.reason}</span>` : ''; // '추천' 대신 '메모'로
+                const reasonHtml = item.reason ? `<span class="item-reason"><span class="reason-prefix">메모:</span> ${item.reason}</span>` : '';
 
                 itemsHtml += `
                     <div class="itinerary-item">
@@ -217,7 +215,6 @@ function createItineraryContentView() {
         itineraryContentView.appendChild(section);
     });
 
-    // 첫 번째 탭 활성화 및 마커 표시
     if (planDataView.days.length > 0) {
         addMarkersAndRouteForDayView(0);
     }
@@ -231,13 +228,11 @@ function handleTabClickView(event) {
         console.error("[PlanView] 잘못된 탭 인덱스:", event.target.dataset.dayIndex);
         return;
     }
-    if (event.target.classList.contains('active')) return; // 이미 활성 탭이면 무시
+    if (event.target.classList.contains('active')) return;
 
-    // 탭 활성화/비활성화
     dayTabsContainerView.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
     event.target.classList.add('active');
 
-    // 해당 탭 내용 표시
     itineraryContentView.querySelectorAll('.tab-content').forEach(sec => {
         const dayNumberForTab = planDataView.days[selectedDayIndex]?.day ?? (selectedDayIndex + 1);
         sec.classList.toggle('active', sec.id === `day-view-${dayNumberForTab}`);
@@ -246,7 +241,6 @@ function handleTabClickView(event) {
     addMarkersAndRouteForDayView(selectedDayIndex);
 }
 
-// --- Google Maps 관련 함수 (View 전용) ---
 function initMapView() {
     if (window.mapViewInitialized || mapView) {
       console.warn("[PlanView] initMapView 중복 호출 시도 또는 이미 초기화됨.");
@@ -257,20 +251,18 @@ function initMapView() {
 
     if (!planDataView) {
         console.warn("[PlanView] 지도 초기화 시 planDataView 없음.");
-        // 필요시 여기서 다시 loadAndDisplayPlan 호출 고려
         return;
     }
 
-    let initialCenter = { lat: 37.5665, lng: 126.9780 }; // 기본 서울
+    let initialCenter = { lat: 37.5665, lng: 126.9780 };
     if (planDataView.days && planDataView.days.length > 0 && planDataView.days[0].items && planDataView.days[0].items.length > 0) {
         const firstItem = planDataView.days[0].items.find(item => item.lat && item.lng);
         if (firstItem) {
             initialCenter = { lat: firstItem.lat, lng: firstItem.lng };
         }
-    } else if (planDataView.city === '도쿄') { // 도시 이름 기반 (result.js 참고)
+    } else if (planDataView.city === '도쿄') {
         initialCenter = { lat: 35.6895, lng: 139.6917 };
     }
-    // ... 기타 도시 좌표 추가 가능
 
     const mapElement = document.getElementById('google-map-view');
     if (!mapElement) {
@@ -284,21 +276,25 @@ function initMapView() {
             zoom: 12,
             mapTypeControl: false,
             streetViewControl: false,
-            // 스타일은 result.css 또는 plan-view.css 에서 정의된 어두운 테마가 있다면 적용
         });
-        const mapTextElement = document.querySelector('#google-map-view + .map-text'); // 형제 요소로 찾기
-        if (mapTextElement) mapTextElement.style.display = 'none';
 
-        addMarkersAndRouteForDayView(0); // 첫날 마커 및 폴리라인 표시
-
+        // 중요: 지도 로딩 완료 후 "지도 로딩 중..." 텍스트 숨기기
         google.maps.event.addListenerOnce(mapView, 'idle', () => {
-            console.log("[PlanView] 지도 idle 상태.");
-            // 로딩 인디케이터는 이미 데이터 로드 후 숨겨졌을 것임
+            console.log("[PlanView] 지도 idle 상태. '지도 로딩 중...' 텍스트 숨김 처리.");
+            if (mapLoadingTextView) { // mapLoadingTextView가 정의되어 있는지 확인
+                mapLoadingTextView.style.display = 'none';
+            }
         });
+
+        addMarkersAndRouteForDayView(0);
 
     } catch (error) {
         console.error("[PlanView] 지도 초기화 중 오류:", error);
         if(mapElement) mapElement.innerHTML = '<p style="color: #ff6b6b;">지도 초기화 오류</p>';
+        if (mapLoadingTextView) { // 오류 발생 시에도 로딩 텍스트를 변경하거나 숨길 수 있습니다.
+            mapLoadingTextView.textContent = '지도 초기화 오류';
+            mapLoadingTextView.style.color = '#ff6b6b';
+        }
     }
 }
 
@@ -356,7 +352,7 @@ function addMarkersAndRouteForDayView(dayIndex) {
         currentPolylineView = new google.maps.Polyline({
             path: pathCoordinates,
             geodesic: true,
-            strokeColor: '#5e9dee', // result.js와 동일한 색상
+            strokeColor: '#5e9dee',
             strokeOpacity: 0.7,
             strokeWeight: 5
         });
@@ -365,7 +361,7 @@ function addMarkersAndRouteForDayView(dayIndex) {
 
     if (hasValidCoords && markersView.length > 0) {
         if (markersView.length > 1) {
-            mapView.fitBounds(bounds, 50); // 패딩 50
+            mapView.fitBounds(bounds, 50);
         } else {
             mapView.setCenter(bounds.getCenter());
             mapView.setZoom(15);
@@ -375,11 +371,16 @@ function addMarkersAndRouteForDayView(dayIndex) {
             if (mapView.getZoom() > maxZoom) {
                 mapView.setZoom(maxZoom);
             }
+            // 지도가 실제로 idle 상태가 되면 여기서 한 번 더 로딩 텍스트를 숨길 수 있습니다.
+            // (initMapView의 idle 리스너와 중복될 수 있으나, 안전장치)
+            if (mapLoadingTextView && mapLoadingTextView.style.display !== 'none') {
+                mapLoadingTextView.style.display = 'none';
+                console.log("[PlanView] addMarkersAndRouteForDayView - 지도 idle, 로딩 텍스트 확실히 숨김.");
+            }
         });
-    } else if (items.length > 0 || planDataView.city) { // 유효 좌표 없어도 도시 중심으로 이동
-        let cityCenter = { lat: 37.5665, lng: 126.9780 }; // 서울 기본
+    } else if (items.length > 0 || planDataView.city) {
+        let cityCenter = { lat: 37.5665, lng: 126.9780 };
         if (planDataView.city === '도쿄') cityCenter = { lat: 35.6895, lng: 139.6917 };
-        // ... 다른 도시 중심 좌표 추가 ...
         mapView.setCenter(cityCenter);
         mapView.setZoom(11);
     }
