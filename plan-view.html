@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>내 여행 일정 보기</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/plan-view.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/bottom-nav.css" />
+</head>
+<body>
+    <div id="loading-indicator-view" class="loading-indicator-view">
+        <p>일정을 불러오는 중입니다...</p>
+    </div>
+
+    <div class="wrapper">
+        <div class="container hidden" id="plan-view-container">
+            <header class="app-header">
+                <img id="header-image-view" src="https://placehold.co/80x80/2d3748/e3e6f3?text=No+Img" alt="대표 이미지" class="header-image">
+                <h1 id="header-title-view">여행 일정</h1>
+            </header>
+
+            <section class="map-section">
+                <div class="map-placeholder">
+                    <span class="map-text">📍 지도 로딩 중...</span>
+                    <div id="google-map-view"></div>
+                </div>
+            </section>
+
+            <nav class="day-tabs" id="day-tabs-view"></nav>
+            <main class="itinerary-content" id="itinerary-content-view"></main>
+
+            <div class="action-buttons-container">
+                <button id="edit-this-plan-button" class="action-button primary">
+                    <i class="fas fa-edit"></i> 이 일정 수정하기
+                </button>
+                <button id="go-to-mypage-button" class="action-button secondary">
+                    <i class="fas fa-user-circle"></i> 마이페이지로 이동
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="bottom-nav-container"></div>
+
+    <script src="./js/config.js"></script>
+    <script src="./js/plan-view.js" defer></script>
+    <script src="./js/layout.js"></script>
+    <script>
+        // Google Maps 스크립트 로드 함수 (plan-view.js에서 initMapView를 콜백으로 호출)
+        function loadGoogleMapsScriptView() {
+            if (typeof window.GOOGLE_MAP_API_KEY === 'string' && window.GOOGLE_MAP_API_KEY && window.GOOGLE_MAP_API_KEY !== 'YOUR_Maps_API_KEY') {
+                if (!document.querySelector('script[src*="maps.googleapis.com"]')) {
+                    const script = document.createElement('script');
+                    script.src = `https://maps.googleapis.com/maps/api/js?key=${window.GOOGLE_MAP_API_KEY}&callback=initMapView&libraries=marker,geometry&v=weekly`;
+                    script.async = true;
+                    script.defer = true;
+                    script.onerror = () => {
+                        console.error('Google Maps 스크립트를 로드하지 못했습니다. (plan-view)');
+                        if (typeof hideLoadingIndicatorView === 'function') {
+                             hideLoadingIndicatorView(true, '지도 로드에 실패했습니다.');
+                        }
+                        const mapPlaceholder = document.getElementById('google-map-view');
+                        if(mapPlaceholder) mapPlaceholder.innerHTML = '<p style="color: #ff6b6b;">지도 로드 실패</p>';
+                    };
+                    document.body.appendChild(script);
+                } else {
+                    // 스크립트가 이미 로드/로드 중이면 initMapView 직접 호출 시도 (이미 콜백이 설정되어 있다면 중복 호출 방지 필요)
+                    if (typeof initMapView === 'function' && !window.mapViewInitialized) {
+                        initMapView();
+                    }
+                }
+            } else {
+                console.error('Google Maps API 키가 없습니다. (plan-view)');
+                if (typeof hideLoadingIndicatorView === 'function') {
+                    hideLoadingIndicatorView(true, '지도 설정을 불러올 수 없습니다.');
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            applyCommonLayout();
+            // plan-view.js에서 로딩 및 데이터 처리를 시작합니다.
+        });
+    </script>
+</body>
+</html>
