@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const itineraryContentContainer = document.getElementById("itinerary-content");
   const addItemButton = document.getElementById("add-item-button");
 
-  // 🟢 데이터 불러오기
+  //  데이터 불러오기
   const storedData = localStorage.getItem('aiGeneratedPlanData');
   if (!storedData) {
     alert("불러올 일정 데이터가 없습니다.");
@@ -22,14 +22,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   planData = JSON.parse(storedData);
 
-  // 🟢 헤더 초기화
+  //  헤더 초기화
   if (planData.city) headerTitle.textContent = planData.city + " 여행";
   if (planData.startDate) startDateInput.value = planData.startDate;
   if (planData.endDate) endDateInput.value = planData.endDate;
   const headerImg = document.getElementById("header-image");
   headerImg.src = planData.image || "https://placehold.co/80x80/2d3748/e3e6f3?text=No+Img";
 
-  // 🟢 Day 탭 생성
+  //  Day 탭 생성
   dayTabsContainer.innerHTML = "";
   planData.days.forEach((day, idx) => {
     const btn = document.createElement("button");
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderDay(selectedIdx);
   });
 
-  // 🟢 일정 렌더링
+  //  일정 렌더링
   function renderDay(dayIndex) {
     itineraryContentContainer.innerHTML = "";
     const dayData = planData.days[dayIndex];
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initSortable(dayIndex);
   }
 
-  // 🟢 SortableJS 드래그 정렬 초기화
+  //  SortableJS 드래그 정렬 초기화
   function initSortable(dayIndex) {
     if (sortable) sortable.destroy(); // 기존 인스턴스 제거
 
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 🟢 일정 추가 버튼
+  //  일정 추가 버튼
   addItemButton.addEventListener("click", () => {
     const activeTab = document.querySelector(".tab-button.active");
     const dayIdx = activeTab ? parseInt(activeTab.dataset.dayIndex) : 0;
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderDay(dayIdx);
   });
 
-  // 🟢 삭제 버튼
+  //  삭제 버튼
   itineraryContentContainer.addEventListener("click", (e) => {
     if (e.target.classList.contains("remove-item")) {
       const dayIdx = parseInt(e.target.dataset.day);
@@ -128,34 +128,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 🟢 저장 버튼
-  document.getElementById("save-edited-plan").addEventListener("click", () => {
-    planData.city = headerTitle.textContent.trim();
-    planData.startDate = startDateInput.value;
-    planData.endDate = endDateInput.value;
+  //  저장 버튼
+  // document.getElementById("save-edited-plan").addEventListener("click", () => {
+  //   planData.city = headerTitle.textContent.trim();
+  //   planData.startDate = startDateInput.value;
+  //   planData.endDate = endDateInput.value;
 
-    const dayIndex = parseInt(document.querySelector(".tab-button.active")?.dataset.dayIndex || 0);
-    const inputs = itineraryContentContainer.querySelectorAll(".itinerary-item");
-    inputs.forEach((div, idx) => {
-      planData.days[dayIndex].items[idx].name = div.querySelector(".item-name").value.trim();
-      planData.days[dayIndex].items[idx].category = div.querySelector(".item-category").value.trim();
-      planData.days[dayIndex].items[idx].reason = div.querySelector(".item-reason").value.trim();
-    });
+  //   const dayIndex = parseInt(document.querySelector(".tab-button.active")?.dataset.dayIndex || 0);
+  //   const inputs = itineraryContentContainer.querySelectorAll(".itinerary-item");
+  //   inputs.forEach((div, idx) => {
+  //     planData.days[dayIndex].items[idx].name = div.querySelector(".item-name").value.trim();
+  //     planData.days[dayIndex].items[idx].category = div.querySelector(".item-category").value.trim();
+  //     planData.days[dayIndex].items[idx].reason = div.querySelector(".item-reason").value.trim();
+  //   });
 
-    localStorage.setItem("editedPlanData", JSON.stringify(planData));
-    alert("일정이 저장되었습니다!");
-    location.href = "plan-view.html";
-  });
+  //   localStorage.setItem("editedPlanData", JSON.stringify(planData));
+  //   alert("일정이 저장되었습니다!");
+  //   location.href = "schedule.html";
+  // });
 
-  // 🟢 첫 Day 렌더링
+  //  첫 Day 렌더링
   renderDay(0);
 
-  // 🟢 지도
+  //  지도
   if (window.google && google.maps.Map) initMap();
   else loadGoogleMapsScript();
 });
 
-// 🟢 카테고리 클래스
+//  카테고리 클래스
 function getCategoryClass(category) {
   const lc = category?.toLowerCase();
   if (lc?.includes("관광")) return "category-sightseeing";
@@ -166,7 +166,7 @@ function getCategoryClass(category) {
   return "category-other";
 }
 
-// 🟢 카테고리 이모티콘
+//  카테고리 이모티콘
 function getCategoryEmoji(category) {
   const lc = category?.toLowerCase();
   if (lc?.includes("관광")) return "🏛️";
@@ -177,14 +177,14 @@ function getCategoryEmoji(category) {
   return "✨";
 }
 
-// 🟢 item-number 번호 새로고침
+//  item-number 번호 새로고침
 function refreshItemNumbers() {
   document.querySelectorAll('.item-number').forEach((el, idx) => {
     el.textContent = idx + 1;
   });
 }
 
-// 🟢 지도
+//  지도
 function initMap() {
   const mapElement = document.getElementById("google-map");
   map = new google.maps.Map(mapElement, { center: { lat: 35.6895, lng: 139.6917 }, zoom: 11 });
